@@ -1,0 +1,25 @@
+---
+import Layout from '../../../../layouts/Layout.astro'
+import Hero from '../../../../components/blocks/hero/PageHeader.astro'
+import BlogPosts from '../../../../components/blocks/blog/BlogPosts.astro'
+import { getCollection } from 'astro:content'
+import { isValidLanguage, defaultLanguage } from '../../../../config/i18n'
+
+const { lang } = Astro.params
+if (!lang || !isValidLanguage(lang)) {
+  return Astro.redirect(`/${defaultLanguage}/blog/tags`)
+}
+
+const allPosts = await getCollection('blog')
+
+export async function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fa' } }]
+}
+---
+
+<Layout lang={lang}>
+  <Hero title="Tags" />
+  <BlogPosts data={allPosts} />
+</Layout>
+
+

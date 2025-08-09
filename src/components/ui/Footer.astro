@@ -11,8 +11,10 @@ import { Icon } from 'astro-icon/components'
 // Data
 import { socialLinks } from '../../config/socialLinks'
 import { footerNavigationData } from '../../config/footerNavigation'
+import { getLanguageFromUrl, addLanguageToUrl } from '../../config/i18n'
 
 const { footerAbout, footerColumns, subFooter } = footerNavigationData
+const currentLang = getLanguageFromUrl(Astro.url.pathname)
 ---
 
 <footer class="footer">
@@ -21,7 +23,7 @@ const { footerAbout, footerColumns, subFooter } = footerNavigationData
 		<div class="footer__container">
 			<div class="footer__cols">
 				<div class="footer__col">
-					<a aria-label="webiste logo" aria-current="page" class="footer__main-brand" href="/">
+                    <a aria-label="webiste logo" aria-current="page" class="footer__main-brand" href={addLanguageToUrl('/', currentLang)}>
 						<img src={footerAbout.logo.src} alt={footerAbout.logo.alt} width="32" height="32" />
 						{footerAbout.logo.text}
 					</a>
@@ -35,9 +37,9 @@ const { footerAbout, footerColumns, subFooter } = footerNavigationData
 							<h3>{column.category}</h3>
 							<ul>
 								{column.subCategories.map((subCategory) => (
-									<li>
-										<a href={subCategory.subCategoryLink}> {subCategory.subCategory} </a>
-									</li>
+                                    <li>
+                                        <a href={addLanguageToUrl(subCategory.subCategoryLink, currentLang)}> {subCategory.subCategory} </a>
+                                    </li>
 								))}
 							</ul>
 						</div>

@@ -6,6 +6,7 @@
 // Components
 // - Layout
 import Layout from '../../layouts/PostLayout.astro'
+import { defaultLanguage } from '../../config/i18n'
 
 // Data
 import { getCollection, render  } from 'astro:content'
@@ -20,6 +21,4 @@ const { entry } = Astro.props
 const { Content } = await render(entry);
 ---
 
-<Layout frontmatter={entry.data}>
-	<Content />
-</Layout>
+{Astro.redirect(`/${defaultLanguage}/blog/${encodeURIComponent(Astro.params.id ?? '')}`)}

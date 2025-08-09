@@ -17,6 +17,7 @@ import '@fontsource-variable/inter'
 import '@fontsource-variable/outfit'
 // Data
 import { configData } from '../config/config'
+import { getLanguageByCode, defaultLanguage } from '../config/i18n'
 
 // Props
 type Props = {
@@ -25,13 +26,15 @@ type Props = {
 	ogImage?: string
 	noindex?: boolean
 	classes?: string
+  lang?: string
 }
 // Page Metadata
-const { title, description, ogImage, noindex, classes } = Astro.props
+const { title, description, ogImage, noindex, classes, lang } = Astro.props
+const currentLanguage = getLanguageByCode(lang ?? defaultLanguage) ?? getLanguageByCode(defaultLanguage)!
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-animation mode-auto relative">
+<html lang={currentLanguage.code} dir={currentLanguage.dir} class="scroll-animation mode-auto relative">
 	<Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
 	<body
 		class:list={[

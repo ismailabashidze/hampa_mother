@@ -16,15 +16,19 @@
 import { Icon } from 'astro-icon/components'
 import Button from './Button.astro'
 import Switcher from './ModeSwitcher.astro'
+import LanguageSelector from './LanguageSelector.astro'
 
 // Data
 import { navigationBarData } from '../../config/navigationBar'
+import { getLanguageFromUrl, addLanguageToUrl } from '../../config/i18n'
 const { logo, navItems, navActions } = navigationBarData
 
-// Determine current path
+// Determine current path and language
 const path = new URL(Astro.request.url).pathname
-function isActivePath(currentPath: string): boolean {
-	return path === currentPath || path === `${currentPath}/`
+const currentLang = getLanguageFromUrl(path)
+function isActiveLocalized(link: string): boolean {
+    const localized = addLanguageToUrl(link, currentLang)
+    return path === localized || path === `${localized}/`
 }
 
 // Type assertion for navActions to ensure type safety
@@ -39,7 +43,7 @@ const savedNavActions = navActions.map((action) => ({
 	<div class="header__container">
 		<nav aria-label="main navigation" role="navigation" class="header__nav">
 			<!-- Logo -->
-			<a href="/" class="header__logo">
+            <a href={addLanguageToUrl('/', currentLang)} class="header__logo">
 				<img src={logo.src} alt={logo.alt} width="48" height="48" />
 				<span>{logo.text}</span>
 			</a>
@@ -64,17 +68,17 @@ const savedNavActions = navActions.map((action) => ({
 					navItems.map((item) => (
 						<li role="none" class="header__menu-item">
 							{!item.submenu ? (
-								<a
-									href={item.link}
-									role="menuitem"
-									class={`header__menu-link ${isActivePath(item.link) ? 'active' : ''}`}
-								>
+                                <a
+                                    href={addLanguageToUrl(item.link, currentLang)}
+                                    role="menuitem"
+                                    class={`header__menu-link ${isActiveLocalized(item.link) ? 'active' : ''}`}
+                                >
 									{item.name}
 								</a>
 							) : (
 								<span
-									role="menuitem"
-									class={`header__menu-link ${isActivePath(item.link) ? 'active' : ''}`}
+                                    role="menuitem"
+                                    class={`header__menu-link ${isActiveLocalized(item.link) ? 'active' : ''}`}
 								>
 									{item.name}
 									<Icon name="chevron-down" class="header__menu-chevron" />
@@ -84,11 +88,11 @@ const savedNavActions = navActions.map((action) => ({
 								<ul class="header__submenu">
 									{item.submenu.map((subItem) => (
 										<li role="none" class="header__submenu-item">
-											<a
-												href={subItem.link}
-												role="menuitem"
-												class={`header__menu-link ${isActivePath(item.link) ? 'active' : ''}`}
-											>
+                                            <a
+                                                href={addLanguageToUrl(subItem.link, currentLang)}
+                                                role="menuitem"
+                                                class={`header__menu-link ${isActiveLocalized(subItem.link) ? 'active' : ''}`}
+                                            >
 												{subItem.name}
 											</a>
 										</li>
@@ -99,6 +103,9 @@ const savedNavActions = navActions.map((action) => ({
 					))
 				}
 			</ul>
+
+			<!-- Language Selector -->
+			<LanguageSelector />
 
 			<!-- Theme Switcher -->
 			<Switcher />

@@ -1,0 +1,42 @@
+---
+import Layout from '../../../../layouts/Layout.astro'
+import Hero from '../../../../components/blocks/hero/PageHeader.astro'
+import BlogPosts from '../../../../components/blocks/blog/BlogPosts.astro'
+import { getCollection } from 'astro:content'
+import { isValidLanguage, defaultLanguage } from '../../../../config/i18n'
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog')
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+  const langs = ['en', 'fa']
+  return langs.flatMap((lang) =>
+    uniqueTags.map((tag) => {
+      const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
+      return { params: { lang, tag }, props: { posts: filteredPosts } }
+    }),
+  )
+}
+
+const { lang, tag } = Astro.params
+if (!lang || !isValidLanguage(lang)) {
+  return Astro.redirect(`/${defaultLanguage}/blog/tags/${tag}`)
+}
+
+const { posts } = Astro.props
+const SEO = {
+  title: `Foxi | posts tagged as ${tag}`,
+  description:
+    "Explore Foxi's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools.",
+}
+const header = {
+  title: `Foxi posts about <br><strong>${tag}</strong>`,
+  text: `Stay informed, stay productive with all the latest from Foxi.`,
+}
+---
+
+<Layout title={SEO.title} description={SEO.description} lang={lang}>
+  <Hero title={header.title} text={header.text} />
+  <BlogPosts data={posts} />
+</Layout>
+
+

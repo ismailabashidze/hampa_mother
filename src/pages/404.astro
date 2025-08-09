@@ -2,6 +2,7 @@
 // Components
 // - Layout
 import Layout from '../layouts/Layout.astro'
+import { getLanguageFromUrl, addLanguageToUrl, defaultLanguage } from '../config/i18n'
 import Section from '../components/ui/Section.astro'
 import Row from '../components/ui/Row.astro'
 import Col from '../components/ui/Col.astro'
@@ -19,7 +20,7 @@ const SEO = {
 }
 ---
 
-<Layout title={SEO.title} description={SEO.description}>
+<Layout title={SEO.title} description={SEO.description} lang={getLanguageFromUrl(Astro.url.pathname)}>
 	<Section>
 		<Row flex classes="text-center">
 			<Col span="2" />
@@ -130,7 +131,7 @@ const SEO = {
 			<Col span="2" />
 			<Col span="8">
 				<Spacer size="2" desktopSize="4" />
-				<Button link="/"> Return to homepage <Icon name="long-arrow-right" /> </Button>
+                <Button link={addLanguageToUrl('/', getLanguageFromUrl(Astro.url.pathname) || defaultLanguage)}> Return to homepage <Icon name="long-arrow-right" /> </Button>
 			</Col>
 			<Col span="2" />
 		</Row>
