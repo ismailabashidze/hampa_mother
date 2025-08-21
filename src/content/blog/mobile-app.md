@@ -4,7 +4,7 @@ pubDate: 2024-04-05T05:00:00Z
 description: 'Our mobile app is now available! Access parenting support, track your child''s development, and connect with experts on the go.'
 author: 'MamaTogether Team'
 image: '/blog/post-02-cover.png'
-tags: ['app', 'announcement', 'mobile']
+tags: ['announcement', 'parenting']
 ---
 
 The MamaTogether mobile app is now available! Access parenting support, track your child's development, and connect with experts wherever you are. Stay connected to the resources you need to navigate parenting challenges with confidence.

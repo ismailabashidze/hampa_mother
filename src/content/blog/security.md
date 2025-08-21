@@ -4,7 +4,7 @@ pubDate: 2024-05-05T05:00:00Z
 description: 'Learn about our commitment to protecting your family''s privacy and data security with our latest security enhancements.'
 author: 'MamaTogether Security Team'
 image: '/blog/post-03-cover.png'
-tags: ['security', 'privacy', 'data protection']
+tags: ['announcement', 'parenting']
 ---
 
 Protecting Your Family: MamaTogether Security Enhancements

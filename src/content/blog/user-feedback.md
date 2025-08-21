@@ -4,7 +4,7 @@ pubDate: 2024-05-05T05:00:00Z
 description: 'Your feedback is crucial to us. We are constantly striving to improve MamaTogether based on your suggestions. Here are some of the latest improvements.'
 author: 'MamaTogether Team'
 image: '/blog/post-04-cover.png'
-tags: ['feedback', 'improvements', 'user experience']
+tags: ['announcement', 'parenting']
 ---
 
 Your feedback is crucial to us. We are constantly striving to improve MamaTogether based on your suggestions. Here are some of the latest improvements we've made thanks to your valuable feedback.

@@ -4,7 +4,7 @@ pubDate: 2024-06-04T05:00:00Z
 description: 'These stories inspire us to keep innovating and improving MamaTogether. We are proud of what our users have achieved and are committed to helping more mothers navigate their parenting journey.'
 author: 'MamaTogether Team'
 image: '/blog/post-06-cover.png'
-tags: ['parenting', 'success stories', 'community']
+tags: ['parenting', 'announcement']
 ---
 
 ![MamaTogether Success Stories](/blog/post-06.png)

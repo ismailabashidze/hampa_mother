@@ -4,7 +4,7 @@ pubDate: 2024-07-15T05:00:00Z
 description: 'Understanding the importance of maternal mental health and how MamaTogether provides support for mothers.'
 author: 'Dr. Leila Mohammadi, Clinical Psychologist'
 image: '/blog/post-08-cover.png'
-tags: ['mental health', 'motherhood', 'wellness']
+tags: ['mental health', 'parenting']
 ---
 
 Supporting Maternal Mental Health: You Are Not Alone

@@ -4,7 +4,7 @@ pubDate: 2024-04-04T05:00:00Z
 description: "We're excited to introduce you to the ultimate parenting support platform designed to help mothers navigate daily challenges with AI guidance and expert oversight."
 author: 'MamaTogether Team'
 image: '/blog/post-01-cover.png'
-tags: ['parenting', 'announcement', 'AI support']
+tags: ['parenting', 'announcement']
 ---
 
 Welcome to MamaTogether (هم‌پای مادر)! We're excited to introduce you to the ultimate parenting support platform designed to help mothers navigate daily challenges with confidence. MamaTogether combines cutting-edge AI technology with expert human oversight to provide you with reliable, evidence-based parenting guidance.

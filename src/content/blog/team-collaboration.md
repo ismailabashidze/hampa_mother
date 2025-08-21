@@ -4,7 +4,7 @@ pubDate: 2024-06-04T05:00:00Z
 description: 'At MamaTogether, we believe that strong family connections are key to successful parenting. Our latest update introduces new features designed to enhance how families communicate and grow together.'
 author: 'MamaTogether Team'
 image: '/blog/post-05-cover.png'
-tags: ['parenting', 'family', 'announcement']
+tags: ['parenting', 'announcement']
 ---
 
 ![MamaTogether is here.](/blog/post-05.png)

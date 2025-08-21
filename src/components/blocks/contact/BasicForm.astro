@@ -21,28 +21,71 @@ type Props = {
 	classes?: string
 }
 const { classes } = Astro.props
+
+// Get language from Astro URL
+const url = new URL(Astro.request.url)
+const pathSegments = url.pathname.split('/').filter(segment => segment.length > 0)
+const lang = pathSegments[0] || 'en'
+const isLangValid = ['en', 'fa'].includes(lang)
+
+// If language is not valid, default to English
+const currentLang = isLangValid ? lang : 'en'
+
+// Define form content based on language
+const formContent = (() => {
+	if (currentLang === 'fa') {
+		return {
+			title: 'تماس با هم‌پای مادر',
+			description: 'با تیم پشتیبانی تربیت فرزند ما در تماس باشید',
+			firstName: 'نام',
+			lastName: 'نام خانوادگی',
+			email: 'ایمیل',
+			emailPlaceholder: 'name@youremail.com',
+			phone: 'شماره تلفن',
+			childAge: 'سن فرزند',
+			message: 'چگونه می‌توانیم به شما کمک کنیم؟',
+			messagePlaceholder: 'درباره چالش‌ها یا سوالات تربیت فرزندتان به ما بگویید...',
+			button: 'ارسال پیام'
+		}
+	}
+	return {
+		title: 'Contact MamaTogether',
+		description: 'Get in touch with our parenting support team',
+		firstName: 'First Name',
+		lastName: 'Last Name',
+		email: 'Email',
+		emailPlaceholder: 'name@youremail.com',
+		phone: 'Phone Number',
+		childAge: 'Child\'s Age',
+		message: 'How can we help you?',
+		messagePlaceholder: 'Tell us about your parenting challenges or questions...',
+		button: 'Send Message'
+	}
+})()
 ---
 
 <Card classes={classes}>
 	<CardBody>
 		<Form>
-			<h2 class="text-2xl">Contact MamaTogether</h2>
-			<p class="text-neutral-600 dark:text-neutral-400 mb-6">Get in touch with our parenting support team</p>
+			<h2 class="text-2xl">{formContent.title}</h2>
+			<p class="text-neutral-600 dark:text-neutral-400 mb-6">{formContent.description}</p>
 			<FormField>
-				<InputField type="text" id="firstName" label="First Name" />
-				<InputField type="text" id="lastName" label="Last Name" />
+				<InputField type="text" id="firstName" label={formContent.firstName} />
+				<InputField type="text" id="lastName" label={formContent.lastName} />
 			</FormField>
 			<FormField>
-				<InputField type="email" id="email" label="Email" required value="name@youremail.com" />
+				<InputField type="email" id="email" label={formContent.email} required placeholder={formContent.emailPlaceholder} />
 			</FormField>
 			<FormField>
-				<InputField type="tel" id="phone" label="Phone Number" />
+				<InputField type="tel" id="phone" label={formContent.phone} />
 			</FormField>
 			<FormField>
-				<InputField type="number" id="childAge" label="Child's Age" min="0" max="12" />
+				<InputField type="number" id="childAge" label={formContent.childAge} min="0" max="12" />
 			</FormField>
-			<FormField><TextArea id="message" label="How can we help you?" placeholder="Tell us about your parenting challenges or questions..." /></FormField>
-			<Button style="primary" type="submit">Send Message</Button>
+			<FormField>
+				<TextArea id="message" label={formContent.message} placeholder={formContent.messagePlaceholder} />
+			</FormField>
+			<Button style="primary" type="submit">{formContent.button}</Button>
 		</Form>
 	</CardBody>
 </Card>

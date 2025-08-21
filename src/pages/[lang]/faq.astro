@@ -8,12 +8,10 @@ import FAQ from '../../components/blocks/FAQ/FaqSticky.astro'
 import TextImage from '../../components/blocks/basic/TextImage.astro'
 import CTA from '../../components/blocks/CTA/BasicDark.astro'
 
+
 // Data
 import faqData from '../../data/json-files/faqData.json'
 import faqDataFa from '../../data/json-files/faqData-fa.json'
-// - FAQ Categories
-const faqPricing = (lang === 'en' ? faqData : faqDataFa).filter((faq) => faq.category === 'pricing')
-const faqFeatures = (lang === 'en' ? faqData : faqDataFa).filter((faq) => faq.category === 'features')
 
 // Content
 import faqImage1 from '../../assets/faq/faq-01.png'
@@ -28,34 +26,64 @@ if (!lang || !isValidLanguage(lang)) {
 	return Astro.redirect(`/${defaultLanguage}/faq`)
 }
 
-// - SEO
-const SEO = (() => {
-	if (lang === 'en') {
-		return {
-			title: 'MamaTogether | Get Your Parenting Questions Answered',
-			description:
-				'Find answers to common questions about MamaTogether, our AI + psychologist platform, pricing, features, and how we support mothers in daily parenting challenges.'
-		}
+// Determine which data to use based on language
+let currentData, isEnglish
+if (lang === 'fa') {
+	currentData = faqDataFa
+	isEnglish = false
+} else {
+	currentData = faqData
+	isEnglish = true
+}
+
+// Filter FAQ data by category
+const faqPricing = currentData.filter((faq) => faq.category === 'pricing')
+const faqFeatures = currentData.filter((faq) => faq.category === 'features')
+
+// Content based on language
+const content = isEnglish ? {
+	seo: {
+		title: 'MamaTogether | Get Your Parenting Questions Answered',
+		description: 'Find answers to common questions about MamaTogether, our AI + psychologist platform, pricing, features, and how we support mothers in daily parenting challenges.'
+	},
+	header: {
+		title: 'Get Answers to Your <strong>Parenting</strong> Questions.',
+		text: 'Find answers to common questions about HamPay‑e Madar'
+	},
+	pricingFaq: {
+		title: "Understanding Our Parenting Support Plans",
+		text: "Get all the details on HamPay‑e Madar's support plans. Learn about the costs, psychologist consultations, and subscription options to find the best plan that fits your family's needs and budget."
+	},
+	textImage: {
+		title: "Why HamPay‑e Madar Offers Great Value for Mothers",
+		text: "At HamPay‑e Madar, we believe in providing exceptional value for every mother. Our support plans are designed to cater to a variety of parenting needs, from basic AI guidance to premium psychologist consultations. Each plan includes access to our powerful AI features, personalized content, and professional psychological oversight."
+	},
+	featuresFaq: {
+		title: "AI Features Made Simple",
+		text: "Discover how HamPay‑e Madar's AI seamlessly helps with daily parenting challenges. From quick answers to personalized activity suggestions, find out how our intelligent platform can support your parenting journey."
 	}
-	return {
+} : {
+	seo: {
 		title: 'هم‌پای مادر | پاسخ به سوالات رایج شما',
-		description:
-			'پاسخ به سوالات رایج درباره هم‌پای مادر، پلتفرم هوش مصنوعی + روانشناس ما، قیمت‌گذاری، ویژگی‌ها، و چگونگی پشتیبانی ما از مادران در چالش‌های روزمره فرزندپروری.'
-	}
-})()
-// - Page Header
-const header = (() => {
-	if (lang === 'en') {
-		return {
-			title: 'Get Answers to Your <strong>Parenting</strong> Questions.',
-			text: 'Find answers to common questions about HamPay‑e Madar'
-		}
-	}
-	return {
+		description: 'پاسخ به سوالات رایج درباره هم‌پای مادر، پلتفرم هوش مصنوعی + روانشناس ما، قیمت‌گذاری، ویژگی‌ها، و چگونگی پشتیبانی ما از مادران در چالش‌های روزمره فرزندپروری.'
+	},
+	header: {
 		title: 'پاسخ به سوالات <strong>فرزندپروری</strong> شما',
 		text: 'پاسخ به سوالات رایج درباره هم‌پای مادر'
+	},
+	pricingFaq: {
+		title: "درک طرح‌های پشتیبانی از فرزندپروری ما",
+		text: "همه جزئیات طرح‌های پشتیبانی هم‌پای مادر را دریافت کنید. درباره هزینه‌ها، مشاوره روانشناسان، و گزینه‌های اشتراک بیشتر بیاموزید تا بهترین طرحی که با نیازها و بودجه خانواده شما سازگار است پیدا کنید."
+	},
+	textImage: {
+		title: "چرا هم‌پای مادر ارزش عالی برای مادران ارائه می‌دهد",
+		text: "در هم‌پای مادر، ما بر این باوریم که به هر مادری ارزش استثنایی ارائه دهیم. طرح‌های پشتیبانی ما برای پاسخگویی به انواع نیازهای فرزندپروری طراحی شده‌اند، از راهنمایی پایه هوش مصنوعی تا مشاوره روانشناسان حرفه‌ای. هر طرح شامل دسترسی به ویژگی‌های قدرتمند هوش مصنوعی ما، محتوای شخصی‌سازی شده، و نظارت روانشناسی حرفه‌ای است."
+	},
+	featuresFaq: {
+		title: "ویژگی‌های هوش مصنوعی به سادگی",
+		text: "کشف کنید که چگونه هوش مصنوعی هم‌پای مادر به طور یکپارچه به چالش‌های روزمره فرزندپروری کمک می‌کند. از پاسخ‌های سریع تا پیشنهادات فعالیت شخصی‌سازی شده، بفهمید که چگونه پلتفرم هوشمند ما می‌تواند از سفر فرزندپروری شما پشتیبانی کند."
 	}
-})()
+}
 
 export async function getStaticPaths() {
 	return [
@@ -65,16 +93,16 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={SEO.title} description={SEO.description} lang={lang}>
-	<Hero title={header.title} text={header.text} />
+<Layout title={content.seo.title} description={content.seo.description} lang={lang}>
+	<Hero title={content.header.title} text={content.header.text} />
 	<FAQ
-		title={lang === 'en' ? "Understanding Our Parenting Support Plans" : "درک طرح‌های پشتیبانی از فرزندپروری ما"}
-		text={lang === 'en' ? "Get all the details on HamPay‑e Madar's support plans. Learn about the costs, psychologist consultations, and subscription options to find the best plan that fits your family's needs and budget." : "همه جزئیات طرح‌های پشتیبانی هم‌پای مادر را دریافت کنید. درباره هزینه‌ها، مشاوره روانشناسان، و گزینه‌های اشتراک بیشتر بیاموزید تا بهترین طرحی که با نیازها و بودجه خانواده شما سازگار است پیدا کنید."}
+		title={content.pricingFaq.title}
+		text={content.pricingFaq.text}
 		data={faqPricing}
 	/>
 	<TextImage
-		title={lang === 'en' ? "Why HamPay‑e Madar Offers Great Value for Mothers" : "چرا هم‌پای مادر ارزش عالی برای مادران ارائه می‌دهد"}
-		text={lang === 'en' ? "At HamPay‑e Madar, we believe in providing exceptional value for every mother. Our support plans are designed to cater to a variety of parenting needs, from basic AI guidance to premium psychologist consultations. Each plan includes access to our powerful AI features, personalized content, and professional psychological oversight." : "در هم‌پای مادر، ما بر این باوریم که به هر مادری ارزش استثنایی ارائه دهیم. طرح‌های پشتیبانی ما برای پاسخگویی به انواع نیازهای فرزندپروری طراحی شده‌اند، از راهنمایی پایه هوش مصنوعی تا مشاوره روانشناسان حرفه‌ای. هر طرح شامل دسترسی به ویژگی‌های قدرتمند هوش مصنوعی ما، محتوای شخصی‌سازی شده، و نظارت روانشناسی حرفه‌ای است."}
+		title={content.textImage.title}
+		text={content.textImage.text}
 		image={faqImage1}
 		mobileImage={faqImage1}
 		imagePosition="left"
@@ -82,9 +110,9 @@ export async function getStaticPaths() {
 		classes="bg-neutral-50 dark:bg-neutral-900 lg:!py-64"
 	/>
 	<FAQ
-		title={lang === 'en' ? "AI Features Made Simple" : "ویژگی‌های هوش مصنوعی به سادگی"}
-		text={lang === 'en' ? "Discover how HamPay‑e Madar's AI seamlessly helps with daily parenting challenges. From quick answers to personalized activity suggestions, find out how our intelligent platform can support your parenting journey." : "کشف کنید که چگونه هوش مصنوعی هم‌پای مادر به طور یکپارچه به چالش‌های روزمره فرزندپروری کمک می‌کند. از پاسخ‌های سریع تا پیشنهادات فعالیت شخصی‌سازی شده، بفهمید که چگونه پلتفرم هوشمند ما می‌تواند از سفر فرزندپروری شما پشتیبانی کند."}
+		title={content.featuresFaq.title}
+		text={content.featuresFaq.text}
 		data={faqFeatures}
 	/>
-	<CTA />
+	<CTA lang={lang}/>
 </Layout>

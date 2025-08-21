@@ -4,7 +4,7 @@ pubDate: 2024-07-04T05:00:00Z
 description: 'Learn about key developmental milestones and how to support your child''s growth at every stage.'
 author: 'Dr. Sara Ahmadi, Child Psychologist'
 image: '/blog/post-07-cover.png'
-tags: ['child development', 'milestones', 'growth']
+tags: ['child development', 'parenting']
 ---
 
 Understanding Your Child's Developmental Milestones
