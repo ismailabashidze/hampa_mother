@@ -16,6 +16,9 @@ const languageUrls = languages.map(lang => ({
 
 // Find current language object
 const currentLangObj = languages.find(lang => lang.code === currentLanguage) || languages[0]
+
+// Determine the direction of the current page context
+const currentPageDir = currentLangObj?.dir || 'ltr'
 ---
 
 <div class="relative inline-block text-left">
@@ -30,7 +33,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
       <img 
         src={`/flags/${currentLanguage}.png`} 
         alt={`${currentLangObj?.nativeName} flag`} 
-        class={`w-6 h-4 ${currentLangObj?.dir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
+        class={`w-6 h-4 ${currentPageDir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
         width="24"
         height="16"
       />
@@ -65,7 +68,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
             <img 
               src={`/flags/${lang.code}.png`} 
               alt={`${lang.nativeName} flag`} 
-              class={`w-6 h-4 ${lang.dir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
+              class={`w-6 h-4 ${currentPageDir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
               width="24"
               height="16"
             />
