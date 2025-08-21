@@ -115,8 +115,11 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
         console.log('[LanguageDropdown] Both elements found, setting up event listeners');
         
         // Define event handlers
-        handleClick = () => {
+        handleClick = (event) => {
           console.log('[LanguageDropdown] Button clicked');
+          // Prevent event from bubbling up to document handler
+          event.stopPropagation();
+          
           const isExpanded = currentButton?.getAttribute('aria-expanded') === 'true';
           console.log('[LanguageDropdown] Current expanded state:', isExpanded);
           currentButton?.setAttribute('aria-expanded', String(!isExpanded));
