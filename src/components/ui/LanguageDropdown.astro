@@ -82,41 +82,54 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
 
 <script>
   // Client-side interactivity for dropdown
+  let currentButton: HTMLElement | null = null;
+  let currentMenu: HTMLElement | null = null;
+  let handleClick: ((this: HTMLElement, ev: MouseEvent) => any) | null = null;
+  let handleDocumentClick: ((this: Document, ev: MouseEvent) => any) | null = null;
+  
   const initDropdown = () => {
     if (typeof window !== 'undefined') {
-      const button = document.getElementById('language-dropdown-button');
-      const menu = document.getElementById('language-dropdown-menu');
+      // Clean up any existing event listeners
+      if (currentButton && handleClick) {
+        currentButton.removeEventListener('click', handleClick);
+      }
+      if (handleDocumentClick) {
+        document.removeEventListener('click', handleDocumentClick);
+      }
       
-      if (button && menu) {
+      // Get fresh references to the DOM elements
+      currentButton = document.getElementById('language-dropdown-button');
+      currentMenu = document.getElementById('language-dropdown-menu');
+      
+      if (currentButton && currentMenu) {
         // Define event handlers
-        const handleClick = () => {
-          const isExpanded = button.getAttribute('aria-expanded') === 'true';
-          button.setAttribute('aria-expanded', String(!isExpanded));
-          menu.classList.toggle('hidden');
+        handleClick = () => {
+          const isExpanded = currentButton?.getAttribute('aria-expanded') === 'true';
+          currentButton?.setAttribute('aria-expanded', String(!isExpanded));
+          currentMenu?.classList.toggle('hidden');
         };
         
-        const handleDocumentClick = (event: MouseEvent) => {
+        handleDocumentClick = (event: MouseEvent) => {
           const target = event.target as Node;
-          if (button && menu && !button.contains(target) && !menu.contains(target)) {
-            button.setAttribute('aria-expanded', 'false');
-            menu.classList.add('hidden');
+          if (currentButton && currentMenu && 
+              !currentButton.contains(target) && 
+              !currentMenu.contains(target)) {
+            currentButton.setAttribute('aria-expanded', 'false');
+            currentMenu.classList.add('hidden');
           }
         };
         
-        // Remove any existing event listeners to prevent duplicates
-        button.removeEventListener('click', handleClick);
-        document.removeEventListener('click', handleDocumentClick);
-        
         // Add event listeners
-        button.addEventListener('click', handleClick);
+        currentButton.addEventListener('click', handleClick);
         document.addEventListener('click', handleDocumentClick);
-        
-        // Close menu on navigation
-        window.addEventListener('astro:before-swap', () => {
-          button.setAttribute('aria-expanded', 'false');
-          menu.classList.add('hidden');
-        });
       }
+    }
+  };
+  
+  const cleanupDropdown = () => {
+    if (currentButton && currentMenu) {
+      currentButton.setAttribute('aria-expanded', 'false');
+      currentMenu.classList.add('hidden');
     }
   };
   
@@ -131,5 +144,8 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
     
     // Re-initialize on Astro page navigation
     window.addEventListener('astro:after-swap', initDropdown);
+    
+    // Cleanup before navigation
+    window.addEventListener('astro:before-swap', cleanupDropdown);
   }
 </script>
