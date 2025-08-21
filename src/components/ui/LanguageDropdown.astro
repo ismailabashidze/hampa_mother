@@ -28,7 +28,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
       aria-haspopup="true"
     >
       <img 
-        src={`/flags/${currentLanguage}.svg`} 
+        src={`/flags/${currentLanguage}.png`} 
         alt={`${currentLangObj?.nativeName} flag`} 
         class="w-5 h-5 mr-2 object-cover rounded-sm"
         width="20"
@@ -63,7 +63,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
             tabindex="-1"
           >
             <img 
-              src={`/flags/${lang.code}.svg`} 
+              src={`/flags/${lang.code}.png`} 
               alt={`${lang.nativeName} flag`} 
               class="w-5 h-5 mr-2 object-cover rounded-sm"
               width="20"
