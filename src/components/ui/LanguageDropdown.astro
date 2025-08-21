@@ -30,7 +30,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
       <img 
         src={`/flags/${currentLanguage}.png`} 
         alt={`${currentLangObj?.nativeName} flag`} 
-        class="w-6 h-4 mr-2 object-cover rounded-sm"
+        class={`w-6 h-4 ${currentLangObj?.dir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
         width="24"
         height="16"
       />
@@ -65,7 +65,7 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
             <img 
               src={`/flags/${lang.code}.png`} 
               alt={`${lang.nativeName} flag`} 
-              class="w-6 h-4 mr-2 object-cover rounded-sm"
+              class={`w-6 h-4 ${lang.dir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
               width="24"
               height="16"
             />
