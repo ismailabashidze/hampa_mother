@@ -5,26 +5,54 @@
 // - UI
 import Badge from '../Badge.astro'
 
-//Data
+// Props
+type Props = {
+	currentTag?: string
+}
+const { currentTag = '' } = Astro.props
+
+// Data
 import { getCollection } from 'astro:content'
+
+// Get current language from Astro URL
+const url = new URL(Astro.request.url)
+const pathSegments = url.pathname.split('/').filter(segment => segment.length > 0)
+const lang = pathSegments[0] || 'en'
+const isLangValid = ['en', 'fa'].includes(lang)
+
+// If language is not valid, default to English
+const currentLang = isLangValid ? lang : 'en'
+
 const posts = await getCollection('blog')
-const tags = [...new Set(posts.map((post) => post.data.tags).flat())]
-const currentPath = new URL(Astro.request.url).pathname
-const pathSegments = currentPath.split('/').filter((segment) => segment.length > 0)
-const currentTag = pathSegments[pathSegments.length - 1] || ''
+
+// Filter posts by language
+const filteredPosts = posts.filter((post) => {
+  if (currentLang === 'fa') {
+    // For Persian, only include posts ending with 'fa'
+    return post.id.endsWith('fa')
+  } else {
+    // For English, only include posts not ending with 'fa'
+    return !post.id.endsWith('fa')
+  }
+})
+
+// Get unique tags from filtered posts
+const tags = [...new Set(filteredPosts.map((post) => post.data.tags).flat())]
 ---
 
 <div class="tags">
-	<Badge link={`/blog/`} name={`All`} type={`${currentTag === 'blog' ? 'primary' : 'neutral'}`} />
+	<Badge 
+		link={`/${currentLang}/blog/`} 
+		name={currentLang === 'fa' ? 'همه' : 'All'} 
+		type={`${!currentTag ? 'primary' : 'neutral'}`} 
+	/>
 	{
 		tags.map((tag) => (
-			<>
-				<Badge
-					link={`/blog/tags/${tag}`}
-					name={tag}
-					type={`${currentTag === tag ? 'primary' : 'neutral'}`}
-				/>
-			</>
+			<Badge
+				link={`/${currentLang}/blog/tags/${tag}`}
+				name={tag}
+				type={`${currentTag === tag ? 'primary' : 'neutral'}`}
+			/>
 		))
 	}
 </div>

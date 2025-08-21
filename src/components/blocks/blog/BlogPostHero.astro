@@ -25,6 +25,9 @@ type Props = {
 	publishDate?: string
 }
 const { tags, title, author, publishDate } = Astro.props
+
+// Get current language from Astro URL
+const lang = Astro.url.pathname.split('/')[1] || 'en'
 ---
 
 <Section id="post-intro" classes="bg-neutral-50 dark:bg-neutral-900">
@@ -38,10 +41,18 @@ const { tags, title, author, publishDate } = Astro.props
 				{
 					author ? (
 						<p class="page-header__text">
-							Written by, {author} {publishDate && 'on ' + publishDate}
+							{lang === 'fa' 
+								? `نوشته شده توسط ${author} در ${publishDate}`
+								: `Written by ${author} on ${publishDate}`
+							}
 						</p>
 					) : (
-						publishDate && <p class="page-header__text">Published on, {publishDate}</p>
+						<p class="page-header__text">
+							{lang === 'fa' 
+								? `منتشر شده در ${publishDate}`
+								: `Published on ${publishDate}`
+							}
+						</p>
 					)
 				}
 			</header>

@@ -11,6 +11,13 @@ import Col from '../../ui/Col.astro'
 // - UI
 import Card from '../../ui/cards/FeatureCard.astro'
 
+// Props
+export interface Props {
+	lang?: string
+}
+
+const { lang = 'en' } = Astro.props
+
 // Content
 // - Cards
 import feature01 from '../../../assets/cards/feature-01.svg'
@@ -18,52 +25,108 @@ import feature02 from '../../../assets/cards/feature-02.svg'
 import feature03 from '../../../assets/cards/feature-03.svg'
 import feature04 from '../../../assets/cards/feature-04.svg'
 import feature05 from '../../../assets/cards/feature-05.svg'
+
+// Language-specific content
+const content = {
+	fa: {
+		title: 'آنچه با هم‌پای مادر دریافت می‌کنید',
+		subtitle: 'ترکیب عملی پشتیبانی ۲۴/۷ هوش مصنوعی و راهنمایی تحت نظارت روانشناسان کودک طراحی شده برای فرزندپروری روزمره در ایران.',
+		features: [
+			{
+				title: 'دستیار هوش مصنوعی ۲۴/۷',
+				subtitle: 'چت متنی/صوتی در هر زمان برای پاسخ‌های سریع، نکات متناسب با سن و ایده‌های فعالیت (داستان، بازی، شعر).'
+			},
+			{
+				title: 'غربالگری تعاملی',
+				subtitle: 'پرسشنامه‌های کوتاه استاندارد (مثل SCARED، PHQ-2) و بررسی‌های هفتگی برای شناسایی زودهنگام ریسک‌ها.'
+			},
+			{
+				title: 'کتابخانه آموزش هوشمند',
+				subtitle: 'مقالات کوتاه، ویدیوهای کوتاه و پادکست‌های متناسب با سن کودک و چالش‌های فعلی شما.'
+			},
+			{
+				title: 'نظارت روانشناس انسانی',
+				subtitle: 'یک روانشناس کودک نظارت‌کننده پیشرفت را بررسی می‌کند، برنامه‌های کوتاه طراحی می‌کند و در صورت نیاز آنلاین ملاقات می‌کند.'
+			},
+			{
+				title: 'برنامه‌های عملی شخصی‌سازی شده',
+				subtitle: 'برنامه‌های هدفمند دو هفته‌ای (مثل کاهش قشقرق) که درون اپ ارائه می‌شود با پیگیری‌های بعدی.'
+			}
+		]
+	},
+	en: {
+		title: 'What you get with MamaTogether',
+		subtitle: 'A practical mix of 24/7 AI support and supervised guidance from child psychologists designed for everyday parenting in Iran.',
+		features: [
+			{
+				title: '24/7 AI Parenting Assistant',
+				subtitle: 'Chat text/voice anytime for quick answers, age-aware tips, and activity ideas (stories, games, rhymes).'
+			},
+			{
+				title: 'Interactive Screening',
+				subtitle: 'Short, standard questionnaires (e.g., SCARED, PHQ-2) and weekly check-ins to flag risks early.'
+			},
+			{
+				title: 'Smart Education Library',
+				subtitle: 'Bite-size articles, short videos, and podcasts tailored to your child\'s age and your current challenges.'
+			},
+			{
+				title: 'Human Psychologist Oversight',
+				subtitle: 'A supervising child psychologist reviews progress, designs short programs, and meets online when needed.'
+			},
+			{
+				title: 'Personalized Action Plans',
+				subtitle: 'Two-week targeted plans (e.g., tantrum reduction) delivered inside the app with follow-ups.'
+			}
+		]
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
 <Section id="features">
 	<Row>
-		<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-			<h2 class="text-pretty">Innovative tools to <strong>transform</strong> your workflow</h2>
-			<p class="pb-0 text-lg">
-				Explore the suite of tools designed to streamline your workflow, enhance productivity, and
-				drive growth. Each product is crafted with precision to meet your needs and exceed your
-				expectations.
-			</p>
-		</Col>
+    <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+      <h2 class="text-pretty">{currentContent.title}</h2>
+      <p class="pb-0 text-lg">
+        {currentContent.subtitle}
+      </p>
+    </Col>
 	</Row>
 	<Row>
 		<Col span="4">
-			<Card
-				title="All your data in one place"
-				subtitle="Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly."
-				image={feature01}
-				link="/features"
-			/>
+      <Card
+        title={currentContent.features[0].title}
+        subtitle={currentContent.features[0].subtitle}
+        image={feature01}
+        link="/features"
+      />
 		</Col>
 		<Col span="4" classes="flex flex-col gap-6">
+      <Card
+        title={currentContent.features[1].title}
+        subtitle={currentContent.features[1].subtitle}
+        image={feature02}
+        link="/features"
+      />
 			<Card
-				title="Organize & manage your projects "
-				subtitle="Stay on top of your tasks and deadlines with our intuitive project management tool. "
-				image={feature02}
-				link="/features"
-			/>
-			<Card
-				title="Keep your team connected"
-				subtitle="With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment."
+        title={currentContent.features[2].title}
+        subtitle={currentContent.features[2].subtitle}
 				image={feature03}
 				link="/features"
 			/>
 		</Col>
 		<Col span="4" classes="flex flex-col gap-6">
+      <Card
+        title={currentContent.features[3].title}
+        subtitle={currentContent.features[3].subtitle}
+        image={feature04}
+        link="/features"
+      />
 			<Card
-				title="Manage your customers"
-				subtitle="Build and nurture customer relationships with our powerful CRM system. "
-				image={feature04}
-				link="/features"
-			/>
-			<Card
-				title="Simplify your financial operations"
-				subtitle="Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly."
+        title={currentContent.features[4].title}
+        subtitle={currentContent.features[4].subtitle}
 				image={feature05}
 				link="/features"
 			/>

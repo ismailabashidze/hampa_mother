@@ -1,27 +1,27 @@
 ---
-title: 'Welcome to Foxi!'
+title: 'Welcome to MamaTogether!'
 pubDate: 2024-04-04T05:00:00Z
-description: "We're excited to introduce you to the ultimate productivity app designed to help you manage your tasks effortlessly to help you stay organized and efficient."
-author: 'Eleni K'
+description: "We're excited to introduce you to the ultimate parenting support platform designed to help mothers navigate daily challenges with AI guidance and expert oversight."
+author: 'MamaTogether Team'
 image: '/blog/post-01-cover.png'
-tags: ['productivity', 'announcement']
+tags: ['parenting', 'announcement', 'AI support']
 ---
 
-Welcome to Foxi! We're excited to introduce you to the ultimate productivity app designed to help you manage your tasks effortlessly. Foxi combines powerful features with an intuitive interface to help you stay organized and efficient.
+Welcome to MamaTogether (هم‌پای مادر)! We're excited to introduce you to the ultimate parenting support platform designed to help mothers navigate daily challenges with confidence. MamaTogether combines cutting-edge AI technology with expert human oversight to provide you with reliable, evidence-based parenting guidance.
 
-![Foxi is here.](/blog/post-01.png)
+![MamaTogether is here.](/blog/post-01.png)
 
-We have rolled out new security updates to keep your data safe and secure. Learn more about our latest security enhancements and how they protect you.
+We have developed a comprehensive platform that combines 24/7 AI assistance with supervision from licensed child psychologists. Learn more about our innovative approach and how it can support your parenting journey.
 
-Whether you're managing personal tasks, collaborating with a team, or tracking your projects, Foxi has you covered. Our mission is to provide you with the tools you need to succeed.
+Whether you're a new mother learning the basics, dealing with challenging behaviors, or seeking guidance on child development, MamaTogether has you covered. Our mission is to provide you with the support and resources you need to be the best parent you can be.
 
-> Foxi combines powerful features with an intuitive interface to help you stay organized and efficient!
+> MamaTogether combines AI technology with expert human oversight to provide reliable, evidence-based parenting guidance!
 
 ### Key Features
 
-- **In-App Messaging**: Communicate directly within the app using our integrated messaging system.
-- **Project Management**: Organize and manage your projects with ease.
-- **Time Tracking**: Keep track of the time spent on tasks to improve productivity.
-- **Customizable Dashboards**: Tailor your workspace to fit your needs.
+- **24/7 AI Parenting Assistant**: Get instant answers to your parenting questions anytime, day or night.
+- **Expert Psychologist Oversight**: All AI recommendations are reviewed by licensed child psychologists.
+- **Developmental Tracking**: Monitor your child's milestones and track their progress over time.
+- **Personalized Support**: Receive guidance tailored to your child's age and your specific situation.
 
-Thank you for choosing Foxi. We look forward to helping you achieve your goals!
+Thank you for choosing MamaTogether. We look forward to supporting you on your parenting journey!

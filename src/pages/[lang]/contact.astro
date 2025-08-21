@@ -21,16 +21,33 @@ if (!lang || !isValidLanguage(lang)) {
 }
 
 // - SEO
-const SEO = {
-	title: 'Foxi | Get in Touch with Us',
-	description:
-		'Have questions or need assistance? Contact Foxi today for support, inquiries, or feedback. Our team is here to help you make the most of your Foxi experience.'
-}
+const SEO = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'MamaTogether | Get in Touch with Us',
+			description:
+				'Have questions about parenting support or need assistance? Contact MamaTogether today for support, inquiries, or feedback about our AI + psychologist platform.'
+		}
+	}
+	return {
+		title: 'هم‌پای مادر | با ما در تماس باشید',
+		description:
+			'سوال در مورد پشتیبانی از فرزندپروری دارید یا به کمک نیاز دارید؟ امروز با هم‌پای مادر تماس بگیرید برای پشتیبانی، پرسش‌ها، یا بازخورد درباره پلتفرم هوش مصنوعی + روانشناس ما.'
+	}
+})()
 // - Page Header
-const header = {
-	title: 'Get Answers to Your <strong>Foxi</strong> Questions.',
-	text: "Whether you have a question, need support, or just want to share your feedback, we're all ears. Reach out to us and we'll get back to you as soon as possible."
-}
+const header = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'Get Answers to Your <strong>Parenting</strong> Questions.',
+			text: "Whether you have a question about our AI guidance, need support with psychologist consultations, or just want to share your feedback, we're all ears. Reach out to us and we'll get back to you as soon as possible."
+		}
+	}
+	return {
+		title: 'پاسخ به سوالات <strong>فرزندپروری</strong> شما',
+		text: "چه سوالی در مورد راهنمایی هوش مصنوعی ما دارید، به پشتیبانی با مشاوره روانشناس نیاز دارید، یا فقط می‌خواهید بازخورد خود را به اشتراک بگذارید، ما گوش به فراموش نمی‌کنیم. با ما تماس بگیرید و ما در اسرع وقت با شما تماس خواهیم گرفت."
+	}
+})()
 
 export async function getStaticPaths() {
 	return [
@@ -47,7 +64,7 @@ export async function getStaticPaths() {
 		id="contact"
 		classes="bg-neutral-50 dark:bg-neutral-950/80"
 	/>
-	<ContactCards classes="dark:bg-neutral-950/80" />
+	<ContactCards lang={lang} classes="dark:bg-neutral-950/80" />
 	<SocialProof classes="dark:bg-neutral-950/80" />
 	<CTA />
 </Layout>

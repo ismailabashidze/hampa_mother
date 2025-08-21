@@ -9,34 +9,68 @@ export async function getStaticPaths() {
   const allPosts = await getCollection('blog')
   const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
   const langs = ['en', 'fa']
-  return langs.flatMap((lang) =>
-    uniqueTags.map((tag) => {
-      const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
-      return { params: { lang, tag }, props: { posts: filteredPosts } }
-    }),
-  )
+  
+  const paths = []
+  
+  for (const lang of langs) {
+    for (const tag of uniqueTags) {
+      // Filter posts by both tag and language
+      const filteredPosts = allPosts.filter((post) => {
+        // Check if post has the tag
+        const hasTag = post.data.tags.includes(tag)
+        
+        // Check if post matches the language
+        if (lang === 'fa') {
+          // For Persian, only include posts ending with 'fa'
+          return hasTag && post.id.endsWith('fa')
+        } else {
+          // For English, only include posts not ending with 'fa'
+          return hasTag && !post.id.endsWith('fa')
+        }
+      })
+      
+      // Only add path if there are posts for this language and tag combination
+      if (filteredPosts.length > 0) {
+        paths.push({
+          params: { lang, tag },
+          props: { posts: filteredPosts, lang, tag }
+        })
+      }
+    }
+  }
+  
+  return paths
 }
 
 const { lang, tag } = Astro.params
+
 if (!lang || !isValidLanguage(lang)) {
   return Astro.redirect(`/${defaultLanguage}/blog/tags/${tag}`)
 }
 
 const { posts } = Astro.props
 const SEO = {
-  title: `Foxi | posts tagged as ${tag}`,
-  description:
-    "Explore Foxi's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools.",
+  title: lang === 'fa' 
+    ? `هم‌پای مادر | مقالات با برچسب ${tag}` 
+    : `MamaTogether | posts tagged as ${tag}`,
+  description: lang === 'fa'
+    ? "آخرین اخبار و مقالات هم‌پای مادر برای کمک به مادران ایرانی در چالش‌های روزمره فرزندپروری."
+    : "Explore MamaTogether's latest news designed to enhance parenting, ensure top-notch security, and integrate seamlessly with your favorite tools."
 }
+
 const header = {
-  title: `Foxi posts about <br><strong>${tag}</strong>`,
-  text: `Stay informed, stay productive with all the latest from Foxi.`,
+  title: lang === 'fa' 
+    ? `مقالات با برچسب <br><strong>${tag}</strong>`
+    : `MamaTogether posts about <br><strong>${tag}</strong>`,
+  text: lang === 'fa'
+    ? "به‌روز باشید، بهره‌ور باشید با آخرین اخبار از هم‌پای مادر."
+    : "Stay informed, stay productive with all the latest from MamaTogether."
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description} lang={lang}>
   <Hero title={header.title} text={header.text} />
-  <BlogPosts data={posts} />
+  <BlogPosts data={posts} currentTag={tag} />
 </Layout>
 
 

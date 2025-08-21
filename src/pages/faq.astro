@@ -1,4 +1,16 @@
 ---
 import { defaultLanguage } from '../config/i18n'
 
-return Astro.redirect(`/${defaultLanguage}/faq`)
+// Check if the URL already includes a language
+const url = new URL(Astro.request.url)
+const pathname = url.pathname
+
+// If no language is specified, redirect to the default language
+if (!pathname.startsWith('/en/') && !pathname.startsWith('/fa/')) {
+	return Astro.redirect(`/${defaultLanguage}/faq`)
+}
+
+// If we're here, it means the page was accessed directly
+// We'll render the English version by default
+const { lang = defaultLanguage } = Astro.params || { lang: defaultLanguage }
+---

@@ -1,25 +1,31 @@
 [
 	{
-		"question": "What is the cost of the basic plan?",
-		"reply": "The basic plan is $9.99 per month, which includes access to core features and limited integrations. This plan is perfect for individuals or small teams looking to improve their productivity without a large investment.",
-		"category": "pricing",
+		"question": "What is MamaTogether and how does it work?",
+		"reply": "MamaTogether is a hybrid platform that combines 24/7 AI guidance with oversight from licensed child psychologists. It provides personalized parenting support, developmental tracking, and expert advice to help mothers navigate daily parenting challenges.",
+		"category": "general",
 		"open": true
 	},
 	{
-		"question": "Are there any discounts for annual subscriptions?",
-		"reply": "Yes, we offer a 20% discount on annual subscriptions for all our plans. By choosing an annual subscription, you can save money and ensure uninterrupted access to all Foxi features for the entire year.",
+		"question": "How much does the basic plan cost?",
+		"reply": "Our basic plan is 490,000 تومان per month, which includes full AI access, early screening tools, weekly summary reports, and personalized content recommendations. This plan is perfect for mothers looking for reliable parenting support and guidance.",
+		"category": "pricing",
+		"open": false
+	},
+	{
+		"question": "Are there discounts for annual subscriptions?",
+		"reply": "Yes, we offer a 25% discount on annual subscriptions for all our plans. By choosing an annual subscription, you can save money and ensure uninterrupted access to all MamaTogether features for the entire year.",
 		"category": "pricing",
 		"open": false
 	},
 	{
 		"question": "Can I change my subscription plan at any time?",
-		"reply": "Yes, you can upgrade or downgrade your subscription plan at any time from your account settings. This flexibility allows you to adjust your plan based on your changing needs and usage.",
+		"reply": "Yes, you can upgrade or downgrade your subscription plan at any time from your account settings. This flexibility allows you to adjust your plan based on your changing parenting needs and usage.",
 		"category": "pricing",
 		"open": false
 	},
 	{
 		"question": "Is there a free trial available?",
-		"reply": "Yes, we offer a 14-day free trial for all new users. During the trial, you can explore all the features of Foxi without any commitment, allowing you to see how it fits into your workflow.",
+		"reply": "Yes, we offer a 7-day free trial for all new users. During the trial, you can explore all the features of MamaTogether without any commitment, allowing you to see how it fits into your parenting journey.",
 		"category": "pricing",
 		"open": false
 	},
@@ -36,69 +42,81 @@
 		"open": false
 	},
 	{
-		"question": "Can I use Foxi with Google Calendar?",
-		"reply": "Yes, Foxi integrates seamlessly with Google Calendar for easy scheduling and task management. This integration helps you keep track of your events and tasks in one place.",
-		"category": "integrations",
+		"question": "How accurate is the AI parenting advice?",
+		"reply": "All AI recommendations are reviewed and supervised by licensed child psychologists, ensuring safe and evidence-based parenting advice. The AI learns from expert knowledge and provides guidance that aligns with current child development research.",
+		"category": "ai",
 		"open": true
 	},
 	{
-		"question": "Does Foxi work with Slack?",
-		"reply": "Yes, you can integrate Foxi with Slack to receive notifications and updates directly in your channels. This allows you to stay informed about your projects without leaving Slack.",
-		"category": "integrations",
+		"question": "Can I speak directly with a child psychologist?",
+		"reply": "Yes, premium subscribers can schedule video consultations with licensed child psychologists for personalized support. These sessions provide expert advice tailored to your specific parenting situation.",
+		"category": "expert-support",
 		"open": false
 	},
 	{
-		"question": "How do I connect Foxi with Trello?",
-		"reply": "To connect Foxi with Trello, go to the integrations page in your settings and follow the instructions to link your accounts. This integration helps you manage your Trello boards and Foxi projects together.",
-		"category": "integrations",
-		"open": false
-	},
-	{
-		"question": "Is there an API for custom integrations?",
-		"reply": "Yes, we provide an API that allows you to create custom integrations with Foxi. Our API documentation provides detailed instructions and examples to help you get started.",
-		"category": "integrations",
-		"open": false
-	},
-	{
-		"question": "Can I sync Foxi with my email?",
-		"reply": "Currently, we do not support email integration, but this feature is on our roadmap for future releases. Stay tuned for updates as we continue to enhance Foxi's capabilities.",
-		"category": "integrations",
-		"open": false
-	},
-	{
-		"question": "Does Foxi support Zapier?",
-		"reply": "Yes, Foxi integrates with Zapier, allowing you to connect with over 2,000 apps and automate your workflows. This integration helps you streamline your processes and improve efficiency.",
-		"category": "integrations",
-		"open": false
-	},
-	{
-		"question": "What are the main features of Foxi?",
-		"reply": "Foxi includes in-app messaging, project management, time tracking, customizable dashboards, and more. These features are designed to help you stay organized, communicate effectively, and manage your time efficiently.",
-		"category": "features",
-		"open": true
-	},
-	{
-		"question": "How do I use the in-app messaging feature?",
-		"reply": "In-app messaging allows you to communicate with your team directly within Foxi. Simply navigate to the messaging tab to start a conversation. You can send messages, share files, and create group chats.",
+		"question": "How does the developmental tracking work?",
+		"reply": "Our developmental tracking system monitors your child's cognitive, social, and physical milestones. You can input observations, track progress, and receive insights about your child's development compared to age-appropriate benchmarks.",
 		"category": "features",
 		"open": false
 	},
 	{
-		"question": "Can I customize my dashboard?",
-		"reply": "Yes, you can customize your dashboard by adding, removing, and rearranging widgets to fit your workflow. This customization helps you keep important information at your fingertips.",
+		"question": "What age groups does MamaTogether support?",
+		"reply": "MamaTogether supports parents of children from birth to 12 years old. Our content and recommendations are tailored to different developmental stages and age-appropriate parenting challenges.",
 		"category": "features",
 		"open": false
 	},
 	{
-		"question": "How does the time tracking feature work?",
-		"reply": "Time tracking allows you to log the time spent on tasks and projects. Start the timer when you begin a task and stop it when you're done. You can also manually log time if needed.",
+		"question": "Is the platform available in Persian?",
+		"reply": "Yes, MamaTogether is available in both Persian and English. You can switch between languages in your account settings to get support in the language you're most comfortable with.",
+		"category": "accessibility",
+		"open": false
+	},
+	{
+		"question": "How do I use the early screening tools?",
+		"reply": "Our early screening tools help identify potential developmental concerns. You can complete age-appropriate questionnaires and receive professional recommendations for further evaluation when needed.",
 		"category": "features",
 		"open": false
 	},
 	{
-		"question": "Is there a mobile app for Foxi?",
-		"reply": "Yes, Foxi is available on both iOS and Android, allowing you to manage your tasks and projects on the go. Download the app from the App Store or Google Play to stay productive anywhere.",
+		"question": "Can I connect with other parents?",
+		"reply": "Yes, our parent community allows you to connect with other parents facing similar challenges. Share experiences, ask questions, and get support from our moderated community of parents.",
+		"category": "community",
+		"open": false
+	},
+	{
+		"question": "Is there a mobile app available?",
+		"reply": "Yes, MamaTogether is available on both iOS and Android, allowing you to access parenting support on the go. Download the app from the App Store or Google Play to get help anywhere, anytime.",
 		"category": "features",
+		"open": false
+	},
+	{
+		"question": "How do I get emergency support?",
+		"reply": "For emergency situations, our platform provides immediate access to crisis support resources and emergency protocols. In life-threatening situations, always call emergency services first.",
+		"category": "support",
+		"open": false
+	},
+	{
+		"question": "What makes MamaTogether different from other parenting apps?",
+		"reply": "MamaTogether uniquely combines AI technology with expert human oversight. Unlike other apps, all our AI recommendations are supervised by licensed child psychologists, ensuring safe, evidence-based advice while maintaining 24/7 availability.",
+		"category": "general",
+		"open": false
+	},
+	{
+		"question": "How do I track my parenting goals?",
+		"reply": "Set personalized parenting goals in your dashboard and track your progress over time. Celebrate achievements and get recommendations for improvement based on your goals and parenting style.",
+		"category": "features",
+		"open": false
+	},
+	{
+		"question": "Can I share reports with my child's doctor?",
+		"reply": "Yes, you can generate detailed reports on your child's development progress and share them with healthcare providers, educators, or other professionals involved in your child's care.",
+		"category": "features",
+		"open": false
+	},
+	{
+		"question": "How do I get started with MamaTogether?",
+		"reply": "Getting started is easy! Sign up for a free trial, complete your child's profile, and start exploring our features. Our onboarding process will guide you through setting up your account and making the most of our platform.",
+		"category": "getting-started",
 		"open": false
 	}
 ]

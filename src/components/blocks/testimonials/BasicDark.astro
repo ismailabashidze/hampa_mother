@@ -1,7 +1,7 @@
 ---
-// Basic Dark Testimonial section
+// Basic Dark Testimonial Section
 // ------------
-// Description: A centered testimonial section that contains: a quote, a caption and a cite in a dark section with a background image.
+// Description: A testimonial section with a dark background, quote, author, and citation.
 
 // Components
 // - Layout
@@ -9,44 +9,254 @@ import Section from '../../ui/Section.astro'
 import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
-import Testimonial from '../../ui/Testimonial.astro'
+import { Icon } from 'astro-icon/components'
 
 // Props
-type Props = {
+export interface Props {
 	blockquote?: string
 	figcaption?: string
 	cite?: string
-	bg?: any
-	bgPosition?: 'left' | 'right' | 'center'
+	bg?: string
+	bgPosition?: string
+	classes?: string
+	lang?: string
 }
-const {
-	blockquote = 'Foxi is like a rocket boost for our productivity! Its sleek design and out-of-this-world features make managing projects and team communication a breeze.',
-	figcaption = 'Sheryl Sandberg',
-	cite = 'CEO, Facebook',
-	bg,
-	bgPosition = 'center'
+
+const { 
+	blockquote, 
+	figcaption, 
+	cite, 
+	bg, 
+	bgPosition = 'center',
+	classes,
+	lang = 'en'
 } = Astro.props
+
+// Language-specific content
+const content = {
+	fa: {
+		blockquote: blockquote || 'هم‌پای مادر برای خانواده ما یک نجات‌دهنده بوده است! ترکیب پشتیبانی هوش مصنوعی و راهنمایی تخصصی روانشناسی کودک، نحوه مدیریت چالش‌های روزانه فرزندپروری من را متحول کرده است. مثل این است که یک روانشناس کودک حرفه‌ای ۲۴/۷ در دسترس داشته باشم.',
+		figcaption: figcaption || 'فاطمه احمدی',
+		cite: cite || 'مادر دو فرزند، تهران'
+	},
+	en: {
+		blockquote: blockquote || 'MamaTogether has been a lifesaver for our family! The combination of AI support and expert child psychology guidance has transformed how I handle daily parenting challenges. It\'s like having a professional child psychologist available 24/7.',
+		figcaption: figcaption || 'Fatemeh Ahmadi',
+		cite: cite || 'Mother of two children, Tehran'
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
-<Section
-	id="testimonial"
-	mode="dark"
-	bg={bg}
-	bgPosition={bgPosition}
-	classes="dark:border-t border-y border-neutral-800"
->
-	<Row>
-		<Col span="12">
-			<Testimonial
-				blockquote={blockquote}
-				figcaption={figcaption}
-				cite={cite}
-				align="center"
-				size="4xl"
-				mobileSize="2xl"
-				classes="!leading-tight font-bold xl:text-5xl max-w-4xl mx-auto"
-				quoteSize={112}
-			/>
-		</Col>
-	</Row>
+<style>
+	.testimonial {
+		@apply relative overflow-hidden pt-80 pb-48 lg:pt-96 lg:pb-56 mt-20 lg:mt-32;
+		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+	}
+	
+	:global(.dark) .testimonial {
+		background: linear-gradient(135deg, #111827 0%, #1e293b 50%, #0f172a 100%);
+	}
+	
+	.testimonial__container {
+		@apply container relative mx-auto flex min-h-[40rem] items-center px-6;
+	}
+	
+	.testimonial__content {
+		@apply relative z-10 max-w-5xl;
+	}
+	
+	.testimonial__quote-wrapper {
+		@apply relative mb-12;
+	}
+	
+	.testimonial__quote-icon {
+		@apply absolute -left-4 -top-6 h-20 w-20 text-primary-500/30 lg:h-24 lg:w-24;
+		filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+	}
+	
+	:global(.dark) .testimonial__quote-icon {
+		@apply text-primary-400/20;
+		filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
+	}
+	
+	.testimonial__quote {
+		@apply relative text-3xl font-light text-slate-800 lg:text-4xl xl:text-5xl;
+		line-height: 1.6;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	}
+	
+	:global([dir="rtl"]) .testimonial__quote {
+		line-height: 1.8;
+	}
+	
+	:global(.dark) .testimonial__quote {
+		@apply text-neutral-100;
+		line-height: 1.6;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+	
+	:global(.dark[dir="rtl"]) .testimonial__quote {
+		line-height: 1.8;
+	}
+	
+	.testimonial__quote::before {
+		content: '"';
+		@apply absolute -left-8 -top-4 text-6xl font-bold text-primary-500 lg:text-7xl xl:text-8xl;
+		text-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+		line-height: 1;
+	}
+	
+	:global(.dark) .testimonial__quote::before {
+		@apply text-primary-400;
+		text-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+	}
+	
+	.testimonial__quote::after {
+		content: '"';
+		@apply absolute -right-4 -bottom-4 text-6xl font-bold text-primary-500 lg:text-7xl xl:text-8xl;
+		text-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+		line-height: 1;
+	}
+	
+	:global(.dark) .testimonial__quote::after {
+		@apply text-primary-400;
+		text-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+	}
+	
+	.testimonial__author {
+		@apply flex items-center gap-4 text-lg text-slate-600;
+	}
+	
+	:global(.dark) .testimonial__author {
+		@apply text-neutral-300;
+	}
+	
+	.testimonial__author-avatar {
+		@apply h-16 w-16 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 p-0.5;
+	}
+	
+	:global(.dark) .testimonial__author-avatar {
+		@apply from-primary-400 to-primary-600;
+	}
+	
+	.testimonial__author-avatar-inner {
+		@apply h-full w-full rounded-full bg-white flex items-center justify-center text-2xl font-bold text-primary-600;
+	}
+	
+	:global(.dark) .testimonial__author-avatar-inner {
+		@apply bg-neutral-800 text-primary-400;
+	}
+	
+	.testimonial__author-info {
+		@apply flex flex-col;
+	}
+	
+	.testimonial__author strong {
+		@apply block text-xl font-semibold text-slate-800 mb-1;
+	}
+	
+	:global(.dark) .testimonial__author strong {
+		@apply text-white;
+	}
+	
+	.testimonial__author cite {
+		@apply block text-base text-slate-600 font-normal;
+	}
+	
+	:global(.dark) .testimonial__author cite {
+		@apply text-neutral-400;
+	}
+	
+	.testimonial__image {
+		@apply absolute right-0 top-0 h-full w-1/2 overflow-hidden opacity-20;
+	}
+	
+	.testimonial__image img {
+		@apply h-full w-full object-cover;
+	}
+	
+	.testimonial__decoration {
+		@apply absolute inset-0 pointer-events-none;
+		background-image: 
+			radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+			radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
+	}
+	
+	:global(.dark) .testimonial__decoration {
+		background-image: 
+			radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+			radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+	}
+	
+	@media (max-width: 768px) {
+		.testimonial {
+			@apply pt-64 pb-40 mt-16;
+		}
+		
+		.testimonial__container {
+			@apply min-h-[32rem] flex-col text-center;
+		}
+		
+		.testimonial__quote {
+			@apply text-2xl lg:text-3xl;
+			line-height: 1.6;
+		}
+		
+		:global([dir="rtl"]) .testimonial__quote {
+			line-height: 1.8;
+		}
+		
+		.testimonial__quote::before,
+		.testimonial__quote::after {
+			@apply text-5xl lg:text-6xl;
+		}
+		
+		.testimonial__quote-icon {
+			@apply h-16 w-16;
+		}
+		
+		.testimonial__author {
+			@apply flex-col text-center;
+		}
+		
+		.testimonial__image {
+			@apply relative w-full h-48 opacity-20;
+		}
+		
+	}
+
+</style>
+
+<Section classes={`testimonial ${classes || ''}`} padding="none">
+	<div class="testimonial__decoration"></div>
+	<div class="ali-space-y testimonial__container">
+		<div class="testimonial__content">
+			<div class="testimonial__quote-wrapper">
+				<Icon name="quotes" class="testimonial__quote-icon" />
+				<blockquote class="testimonial__quote">
+					{currentContent.blockquote}
+				</blockquote>
+			</div>
+			
+			<figcaption class="testimonial__author">
+				<div class="testimonial__author-avatar">
+					<div class="testimonial__author-avatar-inner">
+						{currentContent.figcaption.charAt(0)}
+					</div>
+				</div>
+				<div class="testimonial__author-info">
+					<strong>{currentContent.figcaption}</strong>
+					<cite>{currentContent.cite}</cite>
+				</div>
+			</figcaption>
+		</div>
+		
+		{bg && (
+			<div class="testimonial__image">
+				<img src={bg} alt="Testimonial background" style={`object-position: ${bgPosition}`} />
+			</div>
+		)}
+	</div>
 </Section>

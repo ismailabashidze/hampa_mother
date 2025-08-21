@@ -17,6 +17,17 @@ import highlight03mobile from '../../../assets/highlights/highlight-03-mobile.sv
 import highlight04 from '../../../assets/highlights/highlight-04.svg'
 import highlight04mobile from '../../../assets/highlights/highlight-04-mobile.svg'
 
+// Language support
+import { getLanguageFromUrl } from '../../../config/i18n'
+
+// Props
+export interface Props {
+	lang?: string
+}
+
+const { lang } = Astro.props
+const currentLang = lang || getLanguageFromUrl(Astro.url.pathname)
+
 type HighlightBlock = {
 	title: string
 	text: string
@@ -26,10 +37,56 @@ type HighlightBlock = {
 	imageHeight: number
 	imagePosition: 'left' | 'right'
 }
+
+// Language-specific content
+const content = {
+	fa: {
+		highlights: [
+			{
+				title: '<strong>وضوح</strong> روزانه فرزندپروری',
+				text: 'پاسخ‌های سریع و قابل اعتماد برای غذا، خواب، قشقرق و روتین‌ها دریافت کنید. دیگر نیازی به جست‌وجو نیست—راهنمایی عملی در دقایق.',
+			},
+			{
+				title: '<strong>غربالگری</strong> اولیه و ردیابی',
+				text: 'چک‌لیست‌های ساده و ثبت دیجیتال به شما و روانشناس ناظر کمک می‌کند تا خطرات را زود تشخیص دهید و پیشرفت را در طول زمان ببینید.',
+			},
+			{
+				title: 'محتوای <strong>محلی</strong> برای ایران',
+				text: 'مشاوره، داستان‌ها، بازی‌ها و مثال‌هایی متناسب با فرهنگ ایرانی و گروه‌های سنی، با گام‌های عملی که امروز می‌توانید انجام دهید.',
+			},
+			{
+				title: 'حریم خصوصی و <strong>مقرون‌به‌صرفه</strong> بودن',
+				text: 'طراحی شده با رعایت حریم خصوصی و قیمت‌گذاری منصفانه: سطح رایگان برای مبانی، سطوح پولی برای هوش مصنوعی عمیق‌تر و جلسات آنلاین کوتاه در صورت نیاز.',
+			}
+		]
+	},
+	en: {
+		highlights: [
+			{
+				title: 'Daily parenting <strong>clarity</strong>',
+				text: 'Get quick, trustworthy answers for meals, sleep, tantrums, and routines. No more scrolling—actionable guidance in minutes.',
+			},
+			{
+				title: 'Early <strong>screening</strong> & tracking',
+				text: 'Simple checklists and a digital log help you and the supervising psychologist spot risks early and see progress over time.',
+			},
+			{
+				title: '<strong>Local</strong> content for Iran',
+				text: 'Advice, stories, games, and examples tuned for Iranian culture and age bands, with practical steps you can do today.',
+			},
+			{
+				title: 'Privacy & <strong>affordability</strong>',
+				text: 'Private by design with fair pricing: free tier for basics, paid tiers for deeper AI and short online sessions when needed.',
+			}
+		]
+	}
+}
+
+const currentContent = content[currentLang as keyof typeof content] || content.en
+
 const highlightBlocks: HighlightBlock[] = [
 	{
-		title: 'Complete Project <strong>Visibility</strong>',
-		text: 'Gain complete visibility into your projects and tasks with our comprehensive dashboard. Easily track progress, deadlines, and team performance at a glance. Our dashboard offers real-time project tracking',
+		...currentContent.highlights[0],
 		image: highlight01,
 		imageWidth: highlight01.width,
 		imageHeight: highlight01.height,
@@ -37,8 +94,7 @@ const highlightBlocks: HighlightBlock[] = [
 		imagePosition: 'right'
 	},
 	{
-		title: 'Advanced <strong>Automation</strong> Tools',
-		text: 'Automate repetitive tasks and streamline your workflow with our advanced automation tools. Save time and reduce errors by leveraging automated task assignments, workflow templates, and seamless integration with popular apps and services.',
+		...currentContent.highlights[1],
 		image: highlight02,
 		mobileImage: highlight02mobile,
 		imageWidth: highlight02.width,
@@ -46,8 +102,7 @@ const highlightBlocks: HighlightBlock[] = [
 		imagePosition: 'left'
 	},
 	{
-		title: '<strong>Effective</strong> Team Collaboration',
-		text: 'Enhance team communication and collaboration with our seamless tools. Keep everyone on the same page and ensure efficient project execution through real-time messaging, shared document editing, and task comments. ',
+		...currentContent.highlights[2],
 		image: highlight03,
 		mobileImage: highlight03mobile,
 		imageWidth: highlight03.width,
@@ -55,8 +110,7 @@ const highlightBlocks: HighlightBlock[] = [
 		imagePosition: 'right'
 	},
 	{
-		title: 'Robust Data <strong>Security</strong>',
-		text: 'Protect your data with our robust security features. We prioritize your privacy and security to ensure that your information is always safe. With end-to-end encryption, role-based access control, and regular security audits.',
+		...currentContent.highlights[3],
 		image: highlight04,
 		mobileImage: highlight04mobile,
 		imageWidth: highlight04.width,

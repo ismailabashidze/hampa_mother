@@ -6,7 +6,7 @@
 **Location:** `src/assets/hero-01.png`
 **Usage:** Main hero image in the HomeCTA component
 **Dimensions:** 990×650 pixels
-**Description:** This image should showcase the HamPay-e Madar platform interface with a mother and child, demonstrating the AI assistant and educational content. The image should convey a sense of support, guidance, and modern technology. It should feature warm, inviting colors and show the platform's user-friendly interface with elements like chat bubbles, educational cards, and progress tracking features.
+**Description:** This image should showcase the MamaTogether platform interface with a mother and child, demonstrating the AI assistant and educational content. The image should convey a sense of support, guidance, and modern technology. It should feature warm, inviting colors and show the platform's user-friendly interface with elements like chat bubbles, educational cards, and progress tracking features.
 
 ## Features Section
 
@@ -104,7 +104,7 @@
 **Location:** `src/assets/cta-dark-bg.webp`
 **Usage:** Background image for the final CTA section
 **Dimensions:** 900×600 pixels
-**Description:** A compelling background image that encourages user action. Should show happy families, possibly interacting with the HamPay-e Madar app or service, with warm lighting and positive expressions. The image should work well with white text overlay and have a slightly blurred or darkened effect to ensure text readability.
+**Description:** A compelling background image that encourages user action. Should show happy families, possibly interacting with the MamaTogether app or service, with warm lighting and positive expressions. The image should work well with white text overlay and have a slightly blurred or darkened effect to ensure text readability.
 
 ### badge.svg
 **Location:** `src/assets/badge.svg`
@@ -118,4 +118,4 @@
 **Location:** `src/assets/avatars/`
 **Usage:** User avatars in the hero section
 **Dimensions:** 60×60 pixels each
-**Description:** A diverse set of avatar images representing the community of mothers using HamPay-e Madar. Should include women of different ages, ethnicities, and backgrounds to reflect the diversity of Iranian mothers. Each avatar should be friendly and approachable, with neutral expressions that convey trustworthiness.
+**Description:** A diverse set of avatar images representing the community of mothers using MamaTogether. Should include women of different ages, ethnicities, and backgrounds to reflect the diversity of Iranian mothers. Each avatar should be friendly and approachable, with neutral expressions that convey trustworthiness.

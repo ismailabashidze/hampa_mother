@@ -5,6 +5,10 @@ import BlogPosts from '../../../../components/blocks/blog/BlogPosts.astro'
 import { getCollection } from 'astro:content'
 import { isValidLanguage, defaultLanguage } from '../../../../config/i18n'
 
+export async function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fa' } }]
+}
+
 const { lang } = Astro.params
 if (!lang || !isValidLanguage(lang)) {
   return Astro.redirect(`/${defaultLanguage}/blog/tags`)
@@ -12,14 +16,24 @@ if (!lang || !isValidLanguage(lang)) {
 
 const allPosts = await getCollection('blog')
 
-export async function getStaticPaths() {
-  return [{ params: { lang: 'en' } }, { params: { lang: 'fa' } }]
-}
+// Filter posts by language
+const filteredPosts = allPosts.filter((post) => {
+  if (lang === 'fa') {
+    // For Persian, only include posts ending with 'fa'
+    return post.id.endsWith('fa')
+  } else {
+    // For English, only include posts not ending with 'fa'
+    return !post.id.endsWith('fa')
+  }
+})
 ---
 
 <Layout lang={lang}>
-  <Hero title="Tags" />
-  <BlogPosts data={allPosts} />
+  <Hero 
+    title={lang === 'fa' ? 'برچسب‌ها' : 'Tags'} 
+    text={lang === 'fa' ? 'مرور همه برچسب‌های وبلاگ' : 'Browse all blog tags'}
+  />
+  <BlogPosts data={filteredPosts} />
 </Layout>
 
 

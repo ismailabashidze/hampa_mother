@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 		const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
 		return {
 			params: { tag },
-			props: { posts: filteredPosts }
+			props: { posts: filteredPosts, tag }
 		}
 	})
 }
@@ -30,19 +30,20 @@ const { posts } = Astro.props
 // Content
 // - SEO
 const SEO = {
-	title: `Foxi | posts tagges as ` + tag,
+	title: `MamaTogether | posts tagged as ` + tag,
 	description:
-		"Explore Foxi's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Foxi today!"
+		"Explore MamaTogether's latest news designed to enhance parenting, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your parenting workflow with MamaTogether today!"
 }
 
 // - Page Header
 const header = {
-	title: `Foxi posts about <br><strong>` + tag + `</strong>`,
-	text: `Stay informed, stay productive with all the latest fromFoxi.`
+	title: `MamaTogether posts about <br><strong>` + tag + `</strong>`,
+	text: `Stay informed, stay productive with all the latest from MamaTogether.`
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero title={header.title} text={header.text} />
-	<BlogPosts data={posts} />
+	<!-- Show all posts for this tag, regardless of language -->
+	<BlogPosts data={posts} currentTag={tag} />
 </Layout>

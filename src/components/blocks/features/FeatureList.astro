@@ -13,16 +13,119 @@ import Feature from '../../ui/Feature.astro'
 
 // Data
 import features from '../../../data/json-files/featuresData.json'
+
+// Props
+export interface Props {
+	lang?: string
+}
+
+const { lang = 'en' } = Astro.props
+
+// Language-specific content
+const content = {
+	fa: {
+		title: 'امکانات موجود در <strong>همه</strong> طرح‌های هم‌پای مادر',
+		description: 'مجموعه‌ای از ابزارهای طراحی شده برای بهبود فرزندپروری، ارتقای دانش، و حمایت از رشد کودک را کشف کنید. هر محصول با دقت ساخته شده تا نیازهای شما را برآورده کند.',
+		features: [
+			{
+				title: 'پیشنهادات فعالیت هوشمند',
+				icon: 'light-bulb',
+				description: 'پیشنهادات فعالیت شخصی‌سازی شده که یادگیری و رشد را ترویج می‌دهد. فعالیت‌ها متناسب با علایق و توانایی‌های فرزند شما طراحی شده‌اند.'
+			},
+			{
+				title: 'نظارت روانشناس متخصص',
+				icon: 'user-group',
+				description: 'همه پیشنهادات هوش مصنوعی توسط روانشناسان کودک مجاز بررسی و نظارت می‌شود تا مشاوره ایمن و مبتنی بر شواهد ارائه شود.'
+			},
+			{
+				title: 'ردیابی رشد کودک',
+				icon: 'chart-pie',
+				description: 'نقاط عطف رشد فرزندتان را با سیستم ردیابی جامع ما نظارت کنید. بینش‌هایی در مورد رشد شناختی، اجتماعی و فیزیکی دریافت کنید.'
+			},
+			{
+				title: 'راهنمایی فرزندپروری ۲۴/۷',
+				icon: 'chat-bubbles',
+				description: 'مشاوره و پشتیبانی فوری فرزندپروری در هر زمان دریافت کنید. هوش مصنوعی ما راهنمایی شخصی‌سازی شده بر اساس سن و مرحله رشد فرزندتان ارائه می‌دهد.'
+			},
+			{
+				title: 'راهنمایی تغذیه و سلامت',
+				icon: 'heart',
+				description: 'مشاوره متخصص در مورد تغذیه کودک، خواب و سلامت کلی دریافت کنید. توصیه‌های متناسب با سن برای رشد سالم دریافت کنید.'
+			},
+			{
+				title: 'استراتژی‌های مدیریت رفتار',
+				icon: 'scale',
+				description: 'استراتژی‌های مؤثر برای مدیریت رفتارهای چالش‌برانگیز یاد بگیرید. نکات عملی پشتیبانی شده توسط تحقیقات روانشناسی کودک دریافت کنید.'
+			},
+			{
+				title: 'مسیرهای یادگیری شخصی‌سازی شده',
+				icon: 'document-text',
+				description: 'مسیرهای یادگیری سفارشی طراحی شده برای نیازهای رشد منحصربه‌فرد فرزندتان را دنبال کنید. پیشرفت را ردیابی و دستاوردها را جشن بگیرید.'
+			},
+			{
+				title: 'ابزارهای غربالگری اولیه',
+				icon: 'eye',
+				description: 'به ابزارهای غربالگری رشدی برای شناسایی زودهنگام نگرانی‌های احتمالی دسترسی پیدا کنید. در صورت نیاز توصیه‌های حرفه‌ای برای ارزیابی بیشتر دریافت کنید.'
+			}
+		]
+	},
+	en: {
+		title: 'What\'s included on <strong>all</strong> MamaTogether plans',
+		description: 'Explore the suite of tools designed to enhance your parenting journey, boost your knowledge, and support your child\'s development. Each feature is crafted with precision to meet your needs and exceed your expectations.',
+		features: [
+			{
+				title: 'Smart Activity Recommendations',
+				icon: 'light-bulb',
+				description: 'Receive personalized activity suggestions that promote learning and development. Activities are tailored to your child\'s interests and abilities.'
+			},
+			{
+				title: 'Expert Psychologist Oversight',
+				icon: 'user-group',
+				description: 'All AI recommendations are reviewed and supervised by licensed child psychologists, ensuring safe and evidence-based parenting advice.'
+			},
+			{
+				title: 'Child Development Tracking',
+				icon: 'chart-pie',
+				description: 'Monitor your child\'s developmental milestones with our comprehensive tracking system. Get insights into cognitive, social, and physical development.'
+			},
+			{
+				title: 'AI Parenting Guidance 24/7',
+				icon: 'chat-bubbles',
+				description: 'Get instant parenting advice and support anytime, day or night. Our AI provides personalized guidance based on your child\'s age and development stage.'
+			},
+			{
+				title: 'Nutrition & Health Guidance',
+				icon: 'heart',
+				description: 'Receive expert advice on child nutrition, sleep, and overall health. Get age-appropriate recommendations for healthy development.'
+			},
+			{
+				title: 'Behavior Management Strategies',
+				icon: 'scale',
+				description: 'Learn effective strategies for managing challenging behaviors. Get practical tips backed by child psychology research.'
+			},
+			{
+				title: 'Personalized Learning Paths',
+				icon: 'document-text',
+				description: 'Follow customized learning paths designed for your child\'s unique development needs. Track progress and celebrate achievements.'
+			},
+			{
+				title: 'Early Screening Tools',
+				icon: 'eye',
+				description: 'Access developmental screening tools to identify potential concerns early. Get professional recommendations for further evaluation when needed.'
+			}
+		]
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
 <Section id="features">
 	<Row>
 		<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-			<h2 class="text-pretty">Whats included on <strong>all</strong> foxi plans</h2>
+			<h2 class="text-pretty" set:html={currentContent.title}></h2>
 			<p class="pb-0 text-lg">
-				Explore the suite of tools designed to streamline your workflow, enhance productivity, and
-				drive growth. Each product is crafted with precision to meet your needs and exceed your
-				expectations.
+				{currentContent.description}
 			</p>
 		</Col>
 	</Row>
