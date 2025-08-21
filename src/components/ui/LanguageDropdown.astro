@@ -88,46 +88,75 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
   let handleDocumentClick: ((this: Document, ev: MouseEvent) => any) | null = null;
   
   const initDropdown = () => {
+    console.log('[LanguageDropdown] initDropdown called');
+    
     if (typeof window !== 'undefined') {
+      console.log('[LanguageDropdown] Window object available');
+      
       // Clean up any existing event listeners
       if (currentButton && handleClick) {
+        console.log('[LanguageDropdown] Removing existing click listener from button');
         currentButton.removeEventListener('click', handleClick);
       }
       if (handleDocumentClick) {
+        console.log('[LanguageDropdown] Removing existing document click listener');
         document.removeEventListener('click', handleDocumentClick);
       }
       
       // Get fresh references to the DOM elements
+      console.log('[LanguageDropdown] Getting DOM elements');
       currentButton = document.getElementById('language-dropdown-button');
       currentMenu = document.getElementById('language-dropdown-menu');
       
+      console.log('[LanguageDropdown] Button element:', currentButton);
+      console.log('[LanguageDropdown] Menu element:', currentMenu);
+      
       if (currentButton && currentMenu) {
+        console.log('[LanguageDropdown] Both elements found, setting up event listeners');
+        
         // Define event handlers
         handleClick = () => {
+          console.log('[LanguageDropdown] Button clicked');
           const isExpanded = currentButton?.getAttribute('aria-expanded') === 'true';
+          console.log('[LanguageDropdown] Current expanded state:', isExpanded);
           currentButton?.setAttribute('aria-expanded', String(!isExpanded));
           currentMenu?.classList.toggle('hidden');
+          console.log('[LanguageDropdown] Toggled menu visibility');
         };
         
         handleDocumentClick = (event: MouseEvent) => {
+          console.log('[LanguageDropdown] Document clicked');
           const target = event.target as Node;
           if (currentButton && currentMenu && 
               !currentButton.contains(target) && 
               !currentMenu.contains(target)) {
+            console.log('[LanguageDropdown] Click outside dropdown, closing menu');
             currentButton.setAttribute('aria-expanded', 'false');
             currentMenu.classList.add('hidden');
           }
         };
         
         // Add event listeners
+        console.log('[LanguageDropdown] Adding click listener to button');
         currentButton.addEventListener('click', handleClick);
+        console.log('[LanguageDropdown] Adding document click listener');
         document.addEventListener('click', handleDocumentClick);
+        
+        console.log('[LanguageDropdown] Event listeners added successfully');
+      } else {
+        console.log('[LanguageDropdown] ERROR: Could not find required DOM elements');
+        console.log('[LanguageDropdown] Button found:', !!currentButton);
+        console.log('[LanguageDropdown] Menu found:', !!currentMenu);
       }
+    } else {
+      console.log('[LanguageDropdown] Window object NOT available');
     }
   };
   
   const cleanupDropdown = () => {
+    console.log('[LanguageDropdown] cleanupDropdown called');
     if (currentButton && currentMenu) {
+      console.log('[LanguageDropdown] Cleaning up dropdown state');
       currentButton.setAttribute('aria-expanded', 'false');
       currentMenu.classList.add('hidden');
     }
@@ -135,17 +164,34 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
   
   // Initialize on load
   if (typeof window !== 'undefined') {
+    console.log('[LanguageDropdown] Script loaded, setting up event listeners');
+    
     // Initialize on DOMContentLoaded
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initDropdown);
+      console.log('[LanguageDropdown] DOM not ready, waiting for DOMContentLoaded');
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('[LanguageDropdown] DOMContentLoaded event fired');
+        initDropdown();
+      });
     } else {
+      console.log('[LanguageDropdown] DOM already ready, initializing immediately');
       initDropdown();
     }
     
     // Re-initialize on Astro page navigation
-    window.addEventListener('astro:after-swap', initDropdown);
+    console.log('[LanguageDropdown] Adding astro:after-swap listener');
+    window.addEventListener('astro:after-swap', () => {
+      console.log('[LanguageDropdown] astro:after-swap event fired');
+      initDropdown();
+    });
     
     // Cleanup before navigation
-    window.addEventListener('astro:before-swap', cleanupDropdown);
+    console.log('[LanguageDropdown] Adding astro:before-swap listener');
+    window.addEventListener('astro:before-swap', () => {
+      console.log('[LanguageDropdown] astro:before-swap event fired');
+      cleanupDropdown();
+    });
+  } else {
+    console.log('[LanguageDropdown] Script loaded but window not available');
   }
 </script>
