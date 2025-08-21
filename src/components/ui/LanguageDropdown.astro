@@ -30,9 +30,9 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
       <img 
         src={`/flags/${currentLanguage}.png`} 
         alt={`${currentLangObj?.nativeName} flag`} 
-        class="w-5 h-5 mr-2 object-cover rounded-sm"
-        width="20"
-        height="20"
+        class="w-6 h-4 mr-2 object-cover rounded-sm"
+        width="24"
+        height="16"
       />
       <span>{currentLangObj?.nativeName}</span>
       <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -65,9 +65,9 @@ const currentLangObj = languages.find(lang => lang.code === currentLanguage) || 
             <img 
               src={`/flags/${lang.code}.png`} 
               alt={`${lang.nativeName} flag`} 
-              class="w-5 h-5 mr-2 object-cover rounded-sm"
-              width="20"
-              height="20"
+              class="w-6 h-4 mr-2 object-cover rounded-sm"
+              width="24"
+              height="16"
             />
             <span>{lang.nativeName}</span>
           </a>
