@@ -82,25 +82,54 @@ const currentPageDir = currentLangObj?.dir || 'ltr'
 
 <script>
   // Client-side interactivity for dropdown
-  if (typeof window !== 'undefined') {
-    const button = document.getElementById('language-dropdown-button');
-    const menu = document.getElementById('language-dropdown-menu');
-    
-    if (button && menu) {
-      button.addEventListener('click', () => {
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', String(!isExpanded));
-        menu.classList.toggle('hidden');
-      });
+  const initDropdown = () => {
+    if (typeof window !== 'undefined') {
+      const button = document.getElementById('language-dropdown-button');
+      const menu = document.getElementById('language-dropdown-menu');
       
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (event) => {
-        const target = event.target as Node;
-        if (button && menu && !button.contains(target) && !menu.contains(target)) {
+      if (button && menu) {
+        // Define event handlers
+        const handleClick = () => {
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!isExpanded));
+          menu.classList.toggle('hidden');
+        };
+        
+        const handleDocumentClick = (event: MouseEvent) => {
+          const target = event.target as Node;
+          if (button && menu && !button.contains(target) && !menu.contains(target)) {
+            button.setAttribute('aria-expanded', 'false');
+            menu.classList.add('hidden');
+          }
+        };
+        
+        // Remove any existing event listeners to prevent duplicates
+        button.removeEventListener('click', handleClick);
+        document.removeEventListener('click', handleDocumentClick);
+        
+        // Add event listeners
+        button.addEventListener('click', handleClick);
+        document.addEventListener('click', handleDocumentClick);
+        
+        // Close menu on navigation
+        window.addEventListener('astro:before-swap', () => {
           button.setAttribute('aria-expanded', 'false');
           menu.classList.add('hidden');
-        }
-      });
+        });
+      }
     }
+  };
+  
+  // Initialize on load
+  if (typeof window !== 'undefined') {
+    // Initialize on DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDropdown);
+    } else {
+      initDropdown();
+    }
+    
+    // Re-initialize on Astro page navigation
+    window.addEventListener('astro:after-swap', initDropdown);
   }
 </script>
