@@ -1,36 +1,36 @@
 [
 	{
-		"title": "v1.0.6: Enhanced Security Features",
+		"title": "v1.0.6: Enhanced AI Parenting Guidance",
 		"date": "2024-07-01",
-		"text": "<p>We've implemented new security protocols to safeguard your data. Enjoy peace of mind with improved encryption and multi-factor authentication.</p> <ul><li>2FA enabled by default</li><li>HubSpot integration</li><li>Zoho CRM integration</li></ul>",
+		"text": "<p>We've enhanced our AI parenting guidance system with improved response accuracy and more personalized recommendations. Enjoy better support for your daily parenting challenges.</p> <ul><li>Enhanced AI response quality</li><li>Improved developmental milestone tracking</li><li>Better activity recommendations</li></ul>",
 		"image": "/feeds/feed-01.png"
 	},
 	{
-		"title": "v1.0.5: User Interface Improvements",
+		"title": "v1.0.5: New Early Screening Tools",
 		"date": "2024-06-15",
-		"text": "<p>Our latest update brings a revamped user interface for a more intuitive and visually appealing experience. Navigation and usability have been greatly enhanced.</p><ul><li>Updated dashboard layout</li><li>Improved accessibility features</li><li>Streamlined navigation menus</li></ul>",
+		"text": "<p>Our latest update introduces comprehensive early screening tools to help identify potential developmental concerns early. Get professional recommendations for further evaluation when needed.</p><ul><li>Age-appropriate screening questionnaires</li><li>Professional evaluation recommendations</li><li>Progress tracking for screening results</li></ul>",
 		"image": "/feeds/feed-02.png"
 	},
 	{
-		"title": "v1.0.4: New In-App Messaging",
+		"title": "v1.0.4: Video Consultation Booking",
 		"date": "2024-05-20",
-		"text": "<p>Introducing in-app messaging! Communicate directly within the app to keep conversations organized and accessible without switching between tools.</p>"
+		"text": "<p>Introducing video consultation booking with licensed child psychologists! Schedule personalized sessions to get expert advice tailored to your specific parenting situation.</p>"
 	},
 	{
-		"title": "v1.0.3: Performance Enhancements",
+		"title": "v1.0.3: Mobile App Performance",
 		"date": "2024-04-10",
-		"text": "<p>We've optimized the app to run faster and smoother. Experience improved load times and overall performance.</p>",
+		"text": "<p>We've optimized the mobile app to run faster and smoother. Experience improved load times and better performance on all devices.</p>",
 		"image": "/feeds/feed-03.png"
 	},
 	{
-		"title": "v1.0.2: CRM Integration",
+		"title": "v1.0.2: Multilingual Support",
 		"date": "2024-03-25",
-		"text": "<p>Connect your app with popular CRM systems to streamline customer management. Synchronize data and improve customer relationship processes.</p><ul><li>Salesforce integration</li><li>HubSpot integration</li><li>Zoho CRM integration</li></ul>"
+		"text": "<p>MamaTogether now supports multiple languages including Persian and English. Get parenting support in the language you're most comfortable with.</p><ul><li>Persian language interface</li><li>English language support</li><li>Bilingual content library</li></ul>"
 	},
 	{
-		"title": "v1.0.1: Third-Party API Support",
+		"title": "v1.0.1: Parent Community Features",
 		"date": "2024-02-15",
-		"text": "<p>Seamlessly integrate with third-party APIs to extend the functionality of your app. Enjoy smooth data exchange and enhanced performance.</p>",
+		"text": "<p>Connect with other parents facing similar challenges through our moderated community. Share experiences, ask questions, and get support from fellow parents.</p>",
 		"image": "/feeds/feed-04.png"
 	}
 ]

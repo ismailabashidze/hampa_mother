@@ -1,30 +1,32 @@
 ---
-title: 'Foxi Mobile App Launch'
+title: 'MamaTogether Mobile App Launch'
 pubDate: 2024-04-05T05:00:00Z
-description: 'We have rolled out new security updates to keep your data safe and secure. Learn more about our latest security enhancements and how they protect you.'
-author: 'Eleni K'
+description: 'Our mobile app is now available! Access parenting support, track your child''s development, and connect with experts on the go.'
+author: 'MamaTogether Team'
 image: '/blog/post-02-cover.png'
-tags: ['app', 'announcement']
+tags: ['app', 'announcement', 'mobile']
 ---
 
-The Foxi mobile app is now available! Manage your tasks and projects on the go with our new mobile app. Stay connected and productive no matter where you are.
+The MamaTogether mobile app is now available! Access parenting support, track your child's development, and connect with experts wherever you are. Stay connected to the resources you need to navigate parenting challenges with confidence.
 
-### Features
+### Key Features
 
-- **Full Functionality on Mobile**: Access all of Foxi's features from your mobile device. Manage tasks, communicate with your team, and track your projects with ease.
-- **Sync with Desktop**: Seamlessly sync your data between the mobile app and the desktop version of Foxi. Keep your information up-to-date across all devices.
-- **Offline Mode**: Use Foxi even when you don't have an internet connection. Your changes will sync automatically once you're back online.
+- **24/7 AI Parenting Assistant**: Get instant answers to your parenting questions anytime, day or night right from your mobile device.
+- **Developmental Tracking**: Monitor your child's milestones and track their progress over time with our easy-to-use tracking tools.
+- **Expert Consultations**: Schedule and attend virtual consultations with licensed child psychologists directly through the app.
 
-Download the Foxi mobile app today from the App Store or Google Play and take your productivity with you wherever you go!
+Download the MamaTogether mobile app today from the App Store or Google Play and take your parenting support with you wherever you go!
 
-![Foxi is here.](/blog/post-02.png)
+![MamaTogether Mobile App](/blog/post-02.png)
 
-We have rolled out new security updates to keep your data safe and secure. Learn more about our latest security enhancements and how they protect you.
+Our mobile app brings the full power of MamaTogether to your fingertips, making it easier than ever to access evidence-based parenting guidance.
 
-### App Enhancements
+### Enhanced Accessibility
 
-- **Two-Factor Authentication**: Add an extra layer of security to your account with two-factor authentication. This feature requires you to verify your identity using a second device or method.
-- **Data Encryption**: All data transmitted and stored within Foxi is now encrypted using industry-standard encryption protocols. Your information is protected from unauthorized access.
-- **Regular Security Audits**: We conduct regular security audits to identify and address potential vulnerabilities. Our commitment to security ensures that your data remains safe.
+- **Offline Reading**: Download articles and resources to read offline when you don't have an internet connection.
+- **Push Notifications**: Receive timely reminders about developmental milestones and personalized tips.
+- **Personalized Dashboard**: View your child's progress, upcoming appointments, and recommended resources in one place.
 
-Your security is our top priority. Thank you for trusting Foxi with your valuable data.
+We're committed to making parenting support as accessible as possible. The MamaTogether mobile app ensures you have the guidance you need, whenever and wherever you need it.
+
+Thank you for choosing MamaTogether. We look forward to supporting you on your parenting journey!

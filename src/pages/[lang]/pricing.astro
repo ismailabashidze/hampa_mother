@@ -24,24 +24,51 @@ if (!lang || !isValidLanguage(lang)) {
 }
 
 // - SEO
-const SEO = {
-	title: 'Foxi | Pricing made simple',
-	description:
-		'Discover the perfect SaaS pricing plan for your business. From startups to enterprises, our scalable solutions offer unparalleled features and 24/7 support.'
-}
+const SEO = (() => {
+	if (lang === 'fa') {
+		return {
+			title: 'هم‌پای مادر | قیمت‌گذاری ساده برای مادران',
+			description:
+				'طرح مناسب برای نیازهای فرزندپروری خود را انتخاب کنید. از مبانی رایگان تا مشاوره‌های روانشناس پرمیوم، حمایت مقرون‌به‌صرفه برای سفر خود پیدا کنید.'
+		}
+	}
+	return {
+		title: 'MamaTogether | Simple Pricing for Mothers',
+		description:
+			'Choose the perfect plan for your parenting needs. From free basics to premium psychologist consultations, find affordable support for your journey.'
+	}
+})()
 // - Page Header
-const header = {
-	title: 'Choose the plan that works for <strong>your</strong> needs',
-	text: 'All plans come with a 30-day money-back guarantee.'
-}
+const header = (() => {
+	if (lang === 'fa') {
+		return {
+			title: 'طرحی را انتخاب کنید که برای <strong>خانواده شما</strong> مناسب است',
+			text: 'همه طرح‌ها با ضمانت ۳۰ روزه بازگشت پول ارائه می‌شوند.'
+		}
+	}
+	return {
+		title: 'Choose the plan that works for <strong>your family</strong>',
+		text: 'All plans come with a 30-day money-back guarantee.'
+	}
+})()
 // - Testimonial data
 import testimonialBackground from '../../assets/testimonial-bg-02.webp'
-const testimonialData = {
-	blockquote:
-		"Foxi isn't just an app—it's like having a mischievous yet brilliant sidekick for your business. It streamlines tasks and also cracks jokes to keep spirits high",
-	figcaption: 'Max Widgetson',
-	cite: ' CEO, Widgetify Ltd'
-}
+const testimonialData = (() => {
+	if (lang === 'fa') {
+		return {
+			blockquote:
+				"هم‌پای مادر فقط یک اپلیکیشن نیست—مثل داشتن یک مربی دانا فرزندپروری است که ۲۴/۷ در دسترس باشد. هوش مصنوعی پاسخ‌های سریع می‌دهد و نظارت روانشناس به من اطمینان می‌دهد.",
+			figcaption: 'سارا م.',
+			cite: ' مادر ۲ فرزند، تهران'
+		}
+	}
+	return {
+		blockquote:
+			"MamaTogether isn't just an app—it's like having a wise parenting mentor available 24/7. The AI gives quick answers, and the psychologist oversight gives me confidence.",
+		figcaption: 'Sara M.',
+		cite: ' Mother of 2, Tehran'
+	}
+})()
 
 export async function getStaticPaths() {
 	return [
@@ -53,16 +80,17 @@ export async function getStaticPaths() {
 
 <Layout title={SEO.title} description={SEO.description} lang={lang}>
 	<Hero title={header.title} text={header.text} />
-	<Price />
-	<SocialProof />
-	<Feature />
+	<Price lang={lang} />
+	<SocialProof lang={lang} />
+	<Feature lang={lang} />
 	<Testimonial
 		bg={testimonialBackground}
 		bgPosition="left"
 		blockquote={testimonialData.blockquote}
 		figcaption={testimonialData.figcaption}
 		cite={testimonialData.cite}
+		lang={lang}
 	/>
-	<FAQ classes="bg-slate-50 dark:bg-neutral-900/40" />
-	<CTA />
+	<FAQ classes="bg-slate-50 dark:bg-neutral-900/40" lang={lang} />
+	<CTA lang={lang} />
 </Layout>

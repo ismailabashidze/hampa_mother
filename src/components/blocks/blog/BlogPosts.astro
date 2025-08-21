@@ -4,6 +4,7 @@
 // Description: A grid of blog posts sorted by date in a 3 column layout.
 // Properties:
 // - data: An array of blog posts
+// - currentTag: (optional) the currently selected tag
 
 // Components
 // - Layout
@@ -16,28 +17,73 @@ import TagNavigation from '../../../components/ui/blog/TagNavigation.astro'
 
 // Props
 type Props = {
-	data: any
+	data: any,
+	currentTag?: string
 }
-const { data: allPosts } = Astro.props
+const { data: allPosts, currentTag } = Astro.props
 
 // Function to sort posts by date
 const sortedPosts = allPosts.sort((a: any, b: any) => {
 	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 })
+
+// Get current language from Astro URL
+const lang = Astro.url.pathname.split('/')[1] || 'en'
+
+// Date formatting based on language
+const formatDate = (date: Date, language: string, author: string) => {
+	if (language === 'fa') {
+		// Persian date formatting
+		const persianDate = new Date(date).toLocaleDateString('fa-IR', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		})
+		return `توسط ${author} در ${persianDate}`
+	} else {
+		// English date formatting
+		return `By ${author} on ${new Date(date).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		})}`
+	}
+}
+
+// Filter posts based on language
+const localizedPosts = sortedPosts.filter((post: any) => {
+  // If Persian language, show Persian posts (files ending with 'fa')
+  if (lang === 'fa') {
+    return post.id.endsWith('fa');
+  }
+  // If English language, show English posts (files not ending with 'fa')
+  else {
+    return !post.id.endsWith('fa');
+  }
+}).map((post: any) => {
+  // For Persian posts, we need to clean the ID to remove the 'fa' suffix
+  if (lang === 'fa' && post.id.endsWith('fa')) {
+    return {
+      ...post,
+      id: post.id.replace('fa', '')
+    };
+  }
+  return post;
+});
 ---
 
 <Section>
 	<Row>
 		<Col span="12">
-			<TagNavigation />
+			<TagNavigation currentTag={currentTag} />
 		</Col>
 		{
-			sortedPosts.map((post: any) => (
+			localizedPosts.map((post: any) => (
 				<Col span="4">
 					<Post
-						link={`/blog/${post.id}`}
+						link={`/${lang}/blog/${post.id}`}
 						title={post.data.title}
-						subtitle={`By ${post.data.author} on ${new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}
+						subtitle={formatDate(post.data.pubDate, lang, post.data.author)}
 						image={post.data.image}
 						tags={post.data.tags}
 					>

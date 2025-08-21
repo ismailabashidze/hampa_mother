@@ -12,21 +12,29 @@ import BlogPostHero from '../components/blocks/blog/BlogPostHero.astro'
 // Content
 // - SEO
 const SEO = {
-	title: `${frontmatter.title} | Foxi`,
+	title: `${frontmatter.title} | MamaTogether`,
 	description: `${frontmatter.description}`
+}
+
+// Get current language
+const currentLang = getLanguageFromUrl(Astro.url.pathname)
+
+// Format date based on language
+const formatDate = (date: Date, language: string) => {
+  return date.toLocaleDateString(language === 'fa' ? 'fa-IR' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
 ---
 
-<Layout title={SEO.title} description={SEO.description} lang={getLanguageFromUrl(Astro.url.pathname)}>
+<Layout title={SEO.title} description={SEO.description} lang={currentLang}>
 	<BlogPostHero
 		tags={frontmatter.tags}
 		title={frontmatter.title}
 		author={frontmatter.author}
-		publishDate={frontmatter.pubDate.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		})}
+		publishDate={formatDate(frontmatter.pubDate, currentLang)}
 	/>
 
 	<div class="post-body basic-text basic-text--lg">

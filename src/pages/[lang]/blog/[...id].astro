@@ -1,0 +1,105 @@
+---
+// Blog Post Page (localized)
+// ------------
+// Description: The blog post page for localized content.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+import { isValidLanguage, defaultLanguage } from '../../../config/i18n'
+
+// Data
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog')
+  const paths = []
+  
+  // For each language, create paths for appropriate blog entries
+  for (const lang of ['en', 'fa']) {
+    for (const entry of blogEntries) {
+      // For Persian, only include entries ending with 'fa'
+      if (lang === 'fa' && entry.id.endsWith('fa')) {
+        paths.push({
+          params: { 
+            id: entry.id.replace('fa', ''), // Remove 'fa' suffix for URL
+            lang: lang
+          },
+          props: { entry, lang }
+        })
+      }
+      // For English, only include entries not ending with 'fa'
+      else if (lang === 'en' && !entry.id.endsWith('fa')) {
+        paths.push({
+          params: { 
+            id: entry.id,
+            lang: lang
+          },
+          props: { entry, lang }
+        })
+      }
+    }
+  }
+  
+  return paths
+}
+
+const { entry, lang } = Astro.props
+const currentLanguage = lang || defaultLanguage
+
+// Redirect if language is invalid
+if (!isValidLanguage(currentLanguage)) {
+  return Astro.redirect(`/${defaultLanguage}/blog/${entry.id}`)
+}
+
+const { Content } = await render(entry)
+---
+
+<Layout 
+  title={`${entry.data.title} | MamaTogether`} 
+  description={entry.data.description} 
+  lang={currentLanguage}
+>
+  <div class="post-body basic-text basic-text--lg">
+    <header class="post-header mb-8 text-center">
+      <h1 class="text-3xl font-bold mb-4">{entry.data.title}</h1>
+      <p class="text-lg text-neutral-600 dark:text-neutral-400">
+        {currentLanguage === 'fa' 
+          ? `نوشته شده توسط ${entry.data.author} در ${entry.data.pubDate.toLocaleDateString('fa-IR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}`
+          : `Written by ${entry.data.author} on ${entry.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}`
+        }
+      </p>
+      {entry.data.tags && (
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
+          {entry.data.tags.map((tag) => (
+            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+    
+    <article class="prose prose-lg max-w-none dark:prose-invert">
+      <Content />
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .post-body {
+    @apply mx-auto max-w-3xl px-6 py-12 lg:py-24;
+  }
+  
+  .post-header h1 {
+    @apply text-3xl md:text-4xl;
+  }
+</style>

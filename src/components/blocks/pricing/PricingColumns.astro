@@ -19,6 +19,12 @@ import pricingTablesData from '../../../data/json-files/pricingTablesdata.json'
 import PricingChange from '../../scripts/PricingPlanChange.astro'
 
 // Props
+export interface Props {
+	lang?: string
+}
+
+const { lang = 'en' } = Astro.props
+
 type PricingTableData = {
 	header: {
 		title: string
@@ -41,20 +47,187 @@ type PricingTableData = {
 	type: 'basic' | 'featured'
 }
 
-const pricingData: PricingTableData[] = pricingTablesData as PricingTableData[]
+// Language-specific content
+const content = {
+	fa: {
+		monthlyLabel: 'پرداخت ماهانه',
+		annualLabel: 'پرداخت سالانه',
+		title: 'طرح‌های قیمت‌گذاری',
+		subtitle: 'انتخاب کنید که چه سطحی از پشتیبانی برای شما مناسب است',
+		currency: 'تومان',
+		priceLabel: 'ماه',
+		plans: {
+			free: {
+				title: 'رایگان',
+				subtitle: 'مناسب برای شروع',
+				buttonName: 'شروع رایگان',
+				seeAllFeatures: 'مشاهده همه امکانات',
+				features: [
+					'دسترسی به کتابخانه محتوا',
+					'چت‌بات پایه هوش مصنوعی برای سوالات ساده',
+					'ابزارهای ردیابی ساده',
+					'منابع آموزشی پایه'
+				]
+			},
+			basic: {
+				title: 'پایه',
+				subtitle: 'ایده‌آل برای مادران فعال',
+				buttonName: 'شروع پایه',
+				seeAllFeatures: 'مشاهده همه امکانات',
+				features: [
+					'دسترسی کامل به هوش مصنوعی (سوالات شخصی، پیشنهاد فعالیت)',
+					'ابزارهای غربالگری اولیه (SCARED، PHQ-2)',
+					'گزارش‌های خلاصه هفتگی',
+					'توصیه‌های محتوای شخصی‌سازی شده',
+					'زمان پاسخ اولویت‌دار هوش مصنوعی'
+				]
+			},
+			premium: {
+				title: 'پرمیوم',
+				subtitle: 'پشتیبانی کامل با روانشناس',
+				buttonName: 'شروع پرمیوم',
+				seeAllFeatures: 'مشاهده همه امکانات',
+				features: [
+					'تمام امکانات پایه',
+					'۱ جلسه با روانشناس ناظر (۳۰ دقیقه/ماه)',
+					'پاسخ اولویت‌دار هوش مصنوعی و نظارت روانشناس',
+					'طرح‌های عمل شخصی‌سازی شده',
+					'ردیابی و تحلیل‌های پیشرفته'
+				]
+			}
+		}
+	},
+	en: {
+		monthlyLabel: 'Bill monthly',
+		annualLabel: 'Bill annually',
+		title: 'Pricing Plans',
+		subtitle: 'Choose the level of support that\'s right for you',
+		currency: '$',
+		priceLabel: 'month',
+		plans: {
+			free: {
+				title: 'Free',
+				subtitle: 'Perfect for getting started',
+				buttonName: 'Start Free',
+				seeAllFeatures: 'See all features',
+				features: [
+					'Access to content library',
+					'Basic AI chatbot for simple questions',
+					'Simple tracking tools',
+					'Basic educational resources'
+				]
+			},
+			basic: {
+				title: 'Basic',
+				subtitle: 'Ideal for active mothers',
+				buttonName: 'Start Basic',
+				seeAllFeatures: 'See all features',
+				features: [
+					'Full AI access (personal questions, activity suggestions)',
+					'Early screening tools (SCARED, PHQ-2)',
+					'Weekly summary reports',
+					'Personalized content recommendations',
+					'Priority AI response times'
+				]
+			},
+			premium: {
+				title: 'Premium',
+				subtitle: 'Complete support with psychologist',
+				buttonName: 'Start Premium',
+				seeAllFeatures: 'See all features',
+				features: [
+					'All Basic features',
+					'1 session with supervising psychologist (30 min/month)',
+					'Priority AI response and psychologist oversight',
+					'Personalized action plans',
+					'Advanced tracking and analytics'
+				]
+			}
+		}
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
+
+// Utility functions for Persian formatting
+function toPersianDigits(str: string): string {
+	const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
+	return str.replace(/[0-9]/g, (match) => persianDigits[parseInt(match)])
+}
+
+function addThousandSeparator(num: string): string {
+	return num.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+function formatPrice(price: string, ispersian: boolean): string {
+	if (price === '0') return ispersian ? toPersianDigits('۰') : '0'
+	
+	const formatted = addThousandSeparator(price)
+	return ispersian ? toPersianDigits(formatted) : formatted
+}
+
+// Create localized pricing data with realistic prices
+const basePricingData: PricingTableData[] = pricingTablesData as PricingTableData[]
+
+// Realistic pricing for different markets
+const pricing = {
+	fa: {
+		prices: ['0', '200000', '800000'] // More realistic Toman prices
+	},
+	en: {
+		prices: ['0', '15', '60'] // Dollar prices
+	}
+}
+
+const currentPricing = pricing[lang as keyof typeof pricing] || pricing.en
+
+const pricingData: PricingTableData[] = basePricingData.map((item, index) => {
+	const planKeys = ['free', 'basic', 'premium'] as const
+	const planKey = planKeys[index] || 'free'
+	const localizedPlan = currentContent.plans[planKey]
+	const isPersian = lang === 'fa'
+	
+	const formattedPrice = formatPrice(currentPricing.prices[index], isPersian)
+	
+	return {
+		...item,
+		header: {
+			...item.header,
+			title: localizedPlan.title,
+			subtitle: localizedPlan.subtitle,
+			currency: currentContent.currency,
+			price: formattedPrice,
+			priceMontly: formattedPrice,
+			priceLabel: currentContent.priceLabel,
+			priceLabelMontly: currentContent.priceLabel,
+			buttonName: localizedPlan.buttonName
+		},
+		body: {
+			listItems: localizedPlan.features.map(feature => ({ listItem: feature }))
+		},
+		footer: {
+			...item.footer,
+			buttonName: localizedPlan.seeAllFeatures
+		}
+	}
+})
 ---
 
 <Section>
 	<Row>
-		<Col span="12" align="center" classes="flex items-center justify-center gap-4 mb-12">
-			<span id="monthlyLabel" class="font-semibold text-neutral-400 transition-colors"
-				>Bill monthly</span
-			>
-			<Toggle id="pricingType" label="pricing" showLabel={false} checked={true} />
-			<span
-				class="font-semibold text-neutral-400 text-primary-500 transition-colors"
-				id="annualLabel">Bill annually</span
-			>
+		<Col span="12" align="center" classes="mb-12">
+			<h2 class="text-pretty mb-4">{currentContent.title}</h2>
+			<p class="pb-0 text-lg mb-8">{currentContent.subtitle}</p>
+			<div class="flex items-center justify-center gap-4">
+				<span id="monthlyLabel" class="font-semibold text-neutral-400 transition-colors"
+					>{currentContent.monthlyLabel}</span
+				>
+				<Toggle id="pricingType" label="pricing" showLabel={false} checked={true} />
+				<span
+					class="font-semibold text-neutral-400 text-primary-500 transition-colors"
+					id="annualLabel">{currentContent.annualLabel}</span
+				>
+			</div>
 		</Col>
 		{
 			pricingData.map((item, key) => (

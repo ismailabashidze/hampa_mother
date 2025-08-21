@@ -14,6 +14,13 @@ import { Image } from 'astro:assets'
 import Button from '../../ui/Button.astro'
 import AvatarGroup from '../../ui/AvatarGroup.astro'
 
+// Props
+export interface Props {
+	lang?: string
+}
+
+const { lang = 'en' } = Astro.props
+
 // Content
 // - Hero Image
 import heroImage from '../../../assets/hero-01.png'
@@ -26,27 +33,49 @@ const avatars = [
 	{ image: { src: user2.src, alt: 'user name' }, link: '/' },
 	{ image: { src: user3.src, alt: 'user name' }, link: '/' }
 ]
+
+// Language-specific content
+const content = {
+	fa: {
+		chip: 'نسخه اول تابستان ۱۴۰۴',
+		title: 'سکوی ترکیبی هوش مصنوعی و روانشناسی انسانی برای حمایت جامع از مادران',
+		description: 'پشتیبانی ۲۴/۷ هوش مصنوعی با نظارت روانشناس کودک، فعالیت‌های هوشمند، آموزش و غربالگری اولیه برای مسایل تربیتی کودکان.',
+		button: 'شروع رایگان',
+		imageAlt: 'سکوی هم‌پای مادر'
+	},
+	en: {
+		chip: 'First Version - Summer 2025',
+		title: 'Hybrid AI + Human Psychology Platform for Comprehensive Mother Support',
+		description: '24/7 AI support with child psychologist oversight, smart activities, education, and early screening for parenting challenges.',
+		button: 'Start Free Trial',
+		imageAlt: 'MamaTogether Platform'
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
 <Section id="intro" padding="top" classes="bg-neutral-50 dark:bg-neutral-900">
 	<Row>
 		<Col span="2" />
 		<Col span="8" align="center">
-			<ChipNotification radius="rounded-full" classes="mb-6">
-				<strong>30K+</strong> satisfied customers
-				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
-			</ChipNotification>
-			<h1>Enhance team <strong>performance</strong> with seamless integration</h1>
+      <ChipNotification radius="rounded-full" classes="mb-6">
+        <strong>{currentContent.chip}</strong>
+        <AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
+      </ChipNotification>
+      <h1>
+        {currentContent.title}
+      </h1>
 
-			<p class="pb-0 text-lg">Work smarter, not harder, with our innovative platform</p>
-			<Button size="lg" link="/">Get started for free</Button>
+      <p class="pb-0 text-lg">{currentContent.description}</p>
+      <Button size="lg" link="/">{currentContent.button}</Button>
 		</Col>
 		<Col span="2" />
 		<Col span="2" />
 		<Col span="8">
-			<Image
-				src={heroImage}
-				alt="Foxi. The tailwind astro theme"
+      <Image
+        src={heroImage}
+        alt={currentContent.imageAlt}
 				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
 				format="webp"
 			/></Col

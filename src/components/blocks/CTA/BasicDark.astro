@@ -15,27 +15,54 @@ import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Highlight from '../../ui/Highlight.astro'
 
+// Props
+export interface Props {
+	lang?: string
+}
+
+const { lang = 'en' } = Astro.props
+
 // Content
 import ctaImage from '../../../assets/cta-dark-bg.webp'
 import badge from '../../../assets/badge.svg'
+
+// Language-specific content
+const content = {
+	fa: {
+		title: 'سفر حمایتی خود را امروز شروع کنید',
+		text: 'به کاربران اولیه هم‌پای مادر بپیوندید. راهنمایی روزانه هوش مصنوعی، برنامه‌های تحت نظارت روانشناس و فعالیت‌های عملی برای کودک خود دریافت کنید.',
+		earlyAccess: 'دسترسی زودهنگام',
+		summer: 'تابستان ۱۴۰۴',
+		button: 'شروع کنید'
+	},
+	en: {
+		title: 'Start your supportive journey today',
+		text: 'Join the early users of MamaTogether. Get daily AI guidance, psychologist-supervised plans, and practical activities for your child.',
+		earlyAccess: 'Early access',
+		summer: 'Summer 2025',
+		button: 'Get Started'
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
 <Section>
 	<Row>
 		<Col span="1" />
 		<Col span="10">
-			<CTA
-				title="Join Over 30,000 Satisfied Users!"
-				text="Discover why thousands of professionals trust our platform to streamline their workflow and enhance productivity. Get started today and see the difference for yourself!"
+      <CTA
+        title={currentContent.title}
+        text={currentContent.text}
 				mode="dark"
 				bg={ctaImage}
 			>
 				<ChipNotification radius="rounded-full" classes="mb-6 box">
-					<Image src={badge} alt="Product of the Year" class="h-12 w-12" slot="button" />
-					<span class="hidden md:block">#1 Product of the Year,</span>
-					<Highlight classes="md:ml-2"> Product Hunt </Highlight>
+          <Image src={badge} alt={currentContent.earlyAccess} class="h-12 w-12" slot="button" />
+          <span class="hidden md:block">{currentContent.earlyAccess}</span>
+          <Highlight classes="md:ml-2">{currentContent.summer}</Highlight>
 				</ChipNotification>
-				<Button size="lg" style="primary"> Get started now! </Button>
+        <Button size="lg" style="primary">{currentContent.button}</Button>
 			</CTA>
 		</Col>
 		<Col span="1" />

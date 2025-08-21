@@ -35,13 +35,13 @@ export interface FooterData {
 
 export const footerNavigationData: FooterData = {
 	footerAbout: {
-		title: 'Foxi.',
+		title: 'MamaTogether',
 		aboutText:
-			'Expertly made, responsive, accessible components in React and HTML ready to be used on your website or app. Just copy and paste them on your Tailwind CSS project.',
+			'هم‌پای مادر سکوی ترکیبی است که هوش مصنوعی ۲۴/۷ را با نظارت روانشناس کودک ترکیب می‌کند تا از مادران در چالش‌های روزمره فرزندپروری با فعالیت‌های هوشمند، آموزش و غربالگری اولیه حمایت کند.',
 		logo: {
-			src: '/logo.svg',
-			alt: 'The tailwind astro theme',
-			text: 'Foxi.'
+			src: '/logo.png',
+			alt: 'MamaTogether Logo',
+			text: 'هم‌پای مادر'
 		}
 	},
 	footerColumns: [
@@ -106,6 +106,6 @@ export const footerNavigationData: FooterData = {
 		}
 	],
 	subFooter: {
-		copywriteText: '© Foxi 2024.'
+		copywriteText: '© MamaTogether 2024.'
 	}
 }

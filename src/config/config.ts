@@ -21,13 +21,13 @@ export interface Config {
 }
 
 export const configData: Config = {
-	siteTitle: 'Foxi. Tailwind CSS Astro Starter Kit by Oxygenna',
+	siteTitle: 'MamaTogether | هم‌پای مادر',
 	siteDescription:
-		'Foxi is a design and development agency that specializes in creating beautiful and functional websites.',
+		'MamaTogether is a hybrid platform that combines 24/7 AI guidance with oversight from child psychologists to support mothers in daily parenting challenges with smart activities, education, and early screening.',
 	ogImage: '/og.jpg',
 	logo: {
-		src: '/logo.svg',
-		alt: 'Foxi. logo'
+		src: '/logo.png',
+		alt: 'MamaTogether Logo'
 	},
 	canonical: true,
 	noindex: false,

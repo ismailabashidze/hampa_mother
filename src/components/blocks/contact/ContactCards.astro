@@ -13,29 +13,45 @@ import Col from '../../ui/Col.astro'
 // - UI
 import Card from '../../ui/cards/BasicCard.astro'
 
-// 	Props
+// Props
 type Props = {
 	classes?: string
+	lang?: string
 }
-const { classes } = Astro.props
+const { classes, lang = 'en' } = Astro.props
 ---
 
 <Section id="requests" classes={classes}>
 	<Row>
 		<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-			<h2 class="text-balance">Have a Special Request? We’re Here to <strong>Help!</strong></h2>
-			<p class="pb-0 text-lg">
-				Choose from one of the options below to get the specific help you need. Whether it's
-				customer support, sales inquiries, feature requests, or general feedback, we're here to
-				provide you with the best assistance possible.
-			</p>
+			{
+				lang === 'en' ? (
+					<>
+						<h2 class="text-balance">Have a Special Request? We’re Here to <strong>Help!</strong></h2>
+						<p class="pb-0 text-lg">
+							Choose from one of the options below to get the specific help you need. Whether it's
+							customer support, sales inquiries, feature requests, or general feedback, we're here to
+							provide you with the best assistance possible.
+						</p>
+					</>
+				) : (
+					<>
+						<h2 class="text-balance">درخواست ویژه‌ای دارید؟ ما اینجا هستیم تا <strong>کمک</strong> کنیم!</h2>
+						<p class="pb-0 text-lg">
+							از یکی از گزینه‌های زیر برای دریافت کمک مورد نظر خود انتخاب کنید. چه نیاز به پشتیبانی مشتریان داشته باشید،
+							سوال در مورد طرح‌ها داشته باشید، ایده‌ای برای بهبود داشته باشید یا بازخورد عمومی داشته باشید،
+							ما اینجا هستیم تا بهترین کمک ممکن را به شما ارائه دهیم.
+						</p>
+					</>
+				)
+			}
 		</Col>
 	</Row>
 	<Row>
 		<Col span="3">
 			<Card
-				title="Customer Support"
-				subtitle="Need help with Foxi? Our support team is available 24/7 to assist you with any issues or questions you might have."
+				title={lang === 'en' ? "Customer Support" : "پشتیبانی مشتریان"}
+				subtitle={lang === 'en' ? "Need help with Foxi? Our support team is available 24/7 to assist you with any issues or questions you might have." : "به کمک در مورد هم‌پای مادر نیاز دارید؟ تیم پشتیبانی ما ۲۴ ساعته آماده کمک به شما در مواجهه با هرگونه مشکل یا سوال است."}
 				icon="rocket"
 				classes="text-center dark:!bg-neutral-800/50"
 				link="/contact"
@@ -43,8 +59,8 @@ const { classes } = Astro.props
 		</Col>
 		<Col span="3">
 			<Card
-				title="Sales Inquiries "
-				subtitle="Interested in our plans or want a custom solution? Get in touch with our sales team to find the perfect fit. "
+				title={lang === 'en' ? "Sales Inquiries" : "سوالات فروش"}
+				subtitle={lang === 'en' ? "Interested in our plans or want a custom solution? Get in touch with our sales team to find the perfect fit. " : "به طرح‌های ما علاقه‌مند هستید یا راه‌حلی سفارشی می‌خواهید؟ با تیم فروش ما تماس بگیرید تا بهترین گزینه را پیدا کنیم. "}
 				icon="document-text"
 				classes="text-center dark:!bg-neutral-800/50"
 				link="/contact"
@@ -52,8 +68,8 @@ const { classes } = Astro.props
 		</Col>
 		<Col span="3">
 			<Card
-				title="Feature Requests"
-				subtitle="Have an idea to make Foxi even better? We’d love to hear from you! Share your feature requests and help us improve "
+				title={lang === 'en' ? "Feature Requests" : "درخواست ویژگی‌های جدید"}
+				subtitle={lang === 'en' ? "Have an idea to make Foxi even better? We’d love to hear from you! Share your feature requests and help us improve " : "ایده‌ای برای بهتر کردن هم‌پای مادر دارید؟ ما دوست داریم نظر شما را بشنویم! درخواست‌های خود را با ما به اشتراک بگذارید و به بهبود ما کمک کنید "}
 				icon="bolt"
 				classes="text-center dark:!bg-neutral-800/50"
 				link="/contact"
@@ -61,8 +77,8 @@ const { classes } = Astro.props
 		</Col>
 		<Col span="3" classes="flex flex-col gap-6">
 			<Card
-				title="General Feedback"
-				subtitle="Your feedback is invaluable to us. Let us know how we’re doing and how we can improve. "
+				title={lang === 'en' ? "General Feedback" : "بازخورد عمومی"}
+				subtitle={lang === 'en' ? "Your feedback is invaluable to us. Let us know how we’re doing and how we can improve. " : "بازخورد شما برای ما ارزشمند است. به ما بگویید چگونه عمل می‌کنیم و چگونه می‌توانیم بهتر شویم. "}
 				icon="chat-bubble-left-ellipsis"
 				classes="text-center dark:!bg-neutral-800/50"
 				link="/contact"

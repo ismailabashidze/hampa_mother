@@ -10,11 +10,89 @@ import { Icon } from 'astro-icon/components'
 
 // Data
 import { socialLinks } from '../../config/socialLinks'
-import { footerNavigationData } from '../../config/footerNavigation'
 import { getLanguageFromUrl, addLanguageToUrl } from '../../config/i18n'
 
-const { footerAbout, footerColumns, subFooter } = footerNavigationData
 const currentLang = getLanguageFromUrl(Astro.url.pathname)
+
+// Language-specific footer content
+const footerContent = {
+	fa: {
+		logo: {
+			src: '/logo.png',
+			alt: 'هم‌پای مادر لوگو',
+			text: 'هم‌پای مادر'
+		},
+		aboutText: 'هم‌پای مادر سکوی ترکیبی است که هوش مصنوعی ۲۴/۷ را با نظارت روانشناس کودک ترکیب می‌کند تا از مادران در چالش‌های روزمره فرزندپروری با فعالیت‌های هوشمند، آموزش و غربالگری اولیه حمایت کند.',
+		columns: [
+			{
+				category: 'محصول',
+				subCategories: [
+					{ subCategory: 'امکانات', subCategoryLink: '/features' },
+					{ subCategory: 'سوالات متداول', subCategoryLink: '/faq' },
+					{ subCategory: 'قیمت‌گذاری', subCategoryLink: '/pricing' },
+					{ subCategory: 'تغییرات', subCategoryLink: '/changelog' },
+					{ subCategory: 'شرایط', subCategoryLink: '/terms' }
+				]
+			},
+			{
+				category: 'درباره ما',
+				subCategories: [
+					{ subCategory: 'درباره ما', subCategoryLink: '/' },
+					{ subCategory: 'اخبار', subCategoryLink: '/blog' },
+					{ subCategory: 'کارجویی', subCategoryLink: '/blog' }
+				]
+			},
+			{
+				category: 'تماس با ما',
+				subCategories: [
+					{ subCategory: 'تماس', subCategoryLink: '/contact' },
+					{ subCategory: 'پشتیبانی', subCategoryLink: '/contact' },
+					{ subCategory: 'همکاری', subCategoryLink: '/contact' }
+				]
+			}
+		],
+		copywrite: '© هم‌پای مادر ۲۰۲۴.'
+	},
+	en: {
+		logo: {
+			src: '/logo.png',
+			alt: 'MamaTogether Logo',
+			text: 'MamaTogether'
+		},
+		aboutText: 'MamaTogether is a hybrid platform that combines 24/7 AI guidance with child psychologist oversight to support mothers in daily parenting challenges with smart activities, education, and early screening.',
+		columns: [
+			{
+				category: 'Product',
+				subCategories: [
+					{ subCategory: 'Features', subCategoryLink: '/features' },
+					{ subCategory: 'FAQ', subCategoryLink: '/faq' },
+					{ subCategory: 'Pricing', subCategoryLink: '/pricing' },
+					{ subCategory: 'Changelog', subCategoryLink: '/changelog' },
+					{ subCategory: 'Terms', subCategoryLink: '/terms' }
+				]
+			},
+			{
+				category: 'About us',
+				subCategories: [
+					{ subCategory: 'About us', subCategoryLink: '/' },
+					{ subCategory: 'News', subCategoryLink: '/blog' },
+					{ subCategory: 'Careers', subCategoryLink: '/blog' }
+				]
+			},
+			{
+				category: 'Get in touch',
+				subCategories: [
+					{ subCategory: 'Contact', subCategoryLink: '/contact' },
+					{ subCategory: 'Support', subCategoryLink: '/contact' },
+					{ subCategory: 'Join us', subCategoryLink: '/contact' }
+				]
+			}
+		],
+		copywrite: '© MamaTogether 2024.'
+	}
+}
+
+const currentFooter = footerContent[currentLang as keyof typeof footerContent] || footerContent.en
 ---
 
 <footer class="footer">
@@ -24,15 +102,15 @@ const currentLang = getLanguageFromUrl(Astro.url.pathname)
 			<div class="footer__cols">
 				<div class="footer__col">
                     <a aria-label="webiste logo" aria-current="page" class="footer__main-brand" href={addLanguageToUrl('/', currentLang)}>
-						<img src={footerAbout.logo.src} alt={footerAbout.logo.alt} width="32" height="32" />
-						{footerAbout.logo.text}
+						<img src={currentFooter.logo.src} alt={currentFooter.logo.alt} width="32" height="32" />
+						{currentFooter.logo.text}
 					</a>
 					<p>
-						{footerAbout.aboutText}
+						{currentFooter.aboutText}
 					</p>
 				</div>
 				{
-					footerColumns.map((column) => (
+					currentFooter.columns.map((column) => (
 						<div class="footer__col">
 							<h3>{column.category}</h3>
 							<ul>
@@ -52,7 +130,7 @@ const currentLang = getLanguageFromUrl(Astro.url.pathname)
 	<div class="footer__sub">
 		<div class="footer__container">
 			<div class="footer__sub-cols">
-				<div class="footer__sub-col">{subFooter.copywriteText}</div>
+				<div class="footer__sub-col">{currentFooter.copywrite}</div>
 				<nav aria-labelledby="footer-social-links-dark" class="footer__sub-col text-right">
 					<h2 class="sr-only" id="footer-social-links-dark">Social Media Links</h2>
 					<ul>

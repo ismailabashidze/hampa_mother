@@ -1,230 +1,194 @@
 [
 	{
-		"title": "Real-Time Analytics",
+		"title": "24/7 AI Parenting Guidance",
+		"icon": "chat-bubbles",
+		"description": "Get instant parenting advice and support anytime, day or night. Our AI provides personalized guidance based on your child's age and development stage.",
+		"category": "AI Support"
+	},
+	{
+		"title": "Child Development Tracking",
 		"icon": "chart-pie",
-		"description": "Gain valuable insights instantly with Foxi's real-time analytics. Track performance metrics, user behavior, and campaign effectiveness effortlessly.",
-		"category": "Analytics"
+		"description": "Monitor your child's developmental milestones with our comprehensive tracking system. Get insights into cognitive, social, and physical development.",
+		"category": "Development"
 	},
 	{
-		"title": "Customizable Dashboards",
-		"icon": "squares-plus",
-		"description": "Tailor your workspace with personalized dashboards that suit your workflow. Stay organized and focused on what matters most to your business.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Task Management",
-		"icon": "cliboard-document-check",
-		"description": "Efficiently manage tasks and projects with Foxi's intuitive task management tools. Assign, track progress, and collaborate seamlessly.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Third-Party Apps",
-		"icon": "rocket",
-		"description": "Connect Foxi with your favorite tools and apps effortlessly. Streamline workflows and enhance productivity with seamless integrations.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Mobile Accessibility",
-		"icon": "device-phone-mobile",
-		"description": "Stay productive on the go with Foxi's mobile app. Access key features, collaborate with your team, and manage tasks anytime, anywhere.",
-		"category": "Support"
-	},
-	{
-		"title": "Dedicated Customer Support",
-		"icon": "trophy",
-		"description": "Receive exceptional customer support whenever you need it. Our dedicated team is here 24/7 to assist you with any questions or issues.",
-		"category": "Support"
-	},
-	{
-		"title": "Robust Data Security",
-		"icon": "shield-check",
-		"description": "Rest assured knowing your data is safe with Foxi's robust security measures. We employ industry-standard protocols to protect your information.",
-		"category": "Security"
-	},
-	{
-		"title": "Scalability",
-		"icon": "arrow-treding-up",
-		"description": "Grow your business with confidence using Foxi's scalable platform. Whether you're a startup or a large enterprise, our solution adapts to your needs.",
-		"category": "Security"
-	},
-	{
-		"title": "Real-Time Notifications",
-		"icon": "bell-alert",
-		"description": "Stay updated with real-time notifications for important events and updates. Never miss out on critical information with instant alerts.",
-		"category": "Security"
-	},
-	{
-		"title": "Advanced Reporting",
-		"icon": "clipboard-document-list",
-		"description": "Generate detailed reports with advanced analytics features. Customize reports to track key performance indicators and gain deeper insights.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Team Collaboration Tools",
+		"title": "Expert Psychologist Oversight",
 		"icon": "user-group",
-		"description": "Enhance team collaboration with tools designed for effective communication and project management. Share updates, files, and feedback seamlessly.",
-		"category": "Productivity"
+		"description": "All AI recommendations are reviewed and supervised by licensed child psychologists, ensuring safe and evidence-based parenting advice.",
+		"category": "Expert Support"
 	},
 	{
-		"title": "In-App Messaging",
-		"icon": "chat-bubble-left-right",
-		"description": "Communicate directly within the app using in-app messaging. Keep conversations organized and accessible without switching between tools.",
-		"category": "Integrations"
-	},
-	{
-		"title": "Multi-Device Sync",
-		"icon": "computer-desktop",
-		"description": "Ensure seamless access to your data across all devices. Sync your information in real-time, so you can work from anywhere with consistency.",
-		"category": "Support"
-	},
-	{
-		"title": "Customizable Alerts",
-		"icon": "bell",
-		"description": "Set up customizable alerts to notify you of important events and changes. Tailor notifications to your needs for better management and response.",
-		"category": "Support"
-	},
-	{
-		"title": "API Integrations",
-		"icon": "arrow-path-rounded-square",
-		"description": "Integrate with other systems and services using our flexible API. Expand functionality and connect with external tools effortlessly.",
-		"category": "Integrations"
-	},
-	{
-		"title": "User Role Management",
-		"icon": "user",
-		"description": "Manage user roles and permissions with ease. Control access levels and ensure the right people have the right permissions for your project.",
-		"category": "Security"
-	},
-	{
-		"title": "Custom Themes",
-		"icon": "paint-brush",
-		"description": "Customize the look and feel of your workspace with custom themes. Choose from various design options to match your brand's style.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Data Backup",
-		"icon": "circle-stack",
-		"description": "Protect your data with regular backups. Ensure that your information is safe and recoverable in case of unexpected issues or data loss.",
-		"category": "Security"
-	},
-	{
-		"title": "Performance Tracking",
-		"icon": "arrow-trending-up",
-		"description": "Monitor and track performance metrics to ensure optimal efficiency. Use performance data to make informed decisions and improvements.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Interactive Tutorials",
-		"icon": "document-chart-bar",
-		"description": "Access interactive tutorials to get the most out of our features. Learn new skills and improve your proficiency with guided, hands-on experiences.",
-		"category": "Support"
-	},
-	{
-		"title": "Custom Widgets",
-		"icon": "squares-plus",
-		"description": "Enhance your dashboard with custom widgets. Add and configure widgets to display the most relevant information for your needs.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Data Visualization",
-		"icon": "eye",
-		"description": "Visualize your data with advanced charting and graphing tools. Create insightful visual representations to better understand your metrics.",
-		"category": "Analytics"
-	},
-	{
-		"title": "Integration Marketplace",
-		"icon": "shopping-cart",
-		"description": "Explore our marketplace for additional integrations and plugins. Extend the functionality of your platform with third-party solutions.",
-		"category": "Integrations"
-	},
-	{
-		"title": "Onboarding Assistance",
-		"icon": "user",
-		"description": "Get personalized onboarding assistance to help you set up and start using our platform effectively. Benefit from expert guidance to ensure a smooth start.",
-		"category": "Support"
-	},
-	{
-		"title": "Knowledge Base",
-		"icon": "document-text",
-		"description": "Access a comprehensive knowledge base with articles, guides, and FAQs. Find answers to common questions and learn how to make the most of our features.",
-		"category": "Support"
-	},
-	{
-		"title": "Live Chat Support",
-		"icon": "chat-bubble-left-ellipsis",
-		"description": "Connect with our support team via live chat for immediate assistance. Get answers to your questions and resolve issues in real time.",
-		"category": "Support"
-	},
-	{
-		"title": "Customizable Workspaces",
-		"icon": "cursor-arrow-ripple",
-		"description": "Personalize your workspace layout to fit your needs. Adjust and configure your workspace for maximum efficiency and comfort.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Task Automation",
-		"icon": "rectangle-stack",
-		"description": "Automate routine tasks to improve efficiency and reduce manual work. Set up automated processes to streamline your workflow.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Accessibility Features",
-		"icon": "eye-slash",
-		"description": "Explore features designed to enhance accessibility. Ensure your tools and workspace are usable for all team members, including those with disabilities.",
-		"category": "Security"
-	},
-	{
-		"title": "Enhanced Mobile Access",
-		"icon": "mobile",
-		"description": "Benefit from enhanced mobile access features. Use our app to stay connected and productive with improved functionality on mobile devices.",
-		"category": "Security"
-	},
-	{
-		"title": "Advanced Bug Tracking",
-		"icon": "bug-ant",
-		"description": "Track tasks and projects with advanced tracking features. Monitor progress, set milestones, and manage your projects more effectively.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Comprehensive Balancer",
-		"icon": "scale",
-		"description": "Access comprehensive support resources to assist users at all levels. From troubleshooting to advanced tips, get the help you need.",
-		"category": "Support"
-	},
-	{
-		"title": "Voice Recordings",
-		"icon": "microphone",
-		"description": "Receive real-time updates on accessibility features and improvements. Stay informed about changes that impact your mobile and web access.",
-		"category": "Support"
-	},
-	{
-		"title": "User Identity Verification",
-		"icon": "identification",
-		"description": "Analyze productivity metrics to optimize performance. Gain insights into team and individual productivity to drive improvements.",
-		"category": "Productivity"
-	},
-	{
-		"title": "Payment Integrations",
-		"icon": "credit-card",
-		"description": "Communicate directly within the app using in-app messaging. Keep conversations organized and accessible without switching between tools.",
-		"category": "Integrations"
-	},
-	{
-		"title": "Transparent API ",
-		"icon": "cube-transparent",
-		"description": "Seamlessly integrate with third-party APIs to extend the functionality of your app. Enjoy smooth data exchange and enhanced performance.",
-		"category": "Integrations"
-	},
-	{
-		"title": "Clever CRM Integration",
+		"title": "Smart Activity Recommendations",
 		"icon": "light-bulb",
-		"description": "Connect your app with popular CRM systems to streamline customer management. Synchronize data and improve customer relationship processes.",
-		"category": "Integrations"
+		"description": "Receive personalized activity suggestions that promote learning and development. Activities are tailored to your child's interests and abilities.",
+		"category": "Activities"
 	},
 	{
-		"title": "API key Integration",
-		"icon": "key",
-		"description": "Integrate multiple payment gateways to offer diverse payment options. Ensure secure transactions and smooth payment processing for users.",
-		"category": "Integrations"
+		"title": "Early Screening Tools",
+		"icon": "eye",
+		"description": "Access developmental screening tools to identify potential concerns early. Get professional recommendations for further evaluation when needed.",
+		"category": "Health"
+	},
+	{
+		"title": "Personalized Learning Paths",
+		"icon": "document-chart-bar",
+		"description": "Follow customized learning paths designed for your child's unique development needs. Track progress and celebrate achievements.",
+		"category": "Education"
+	},
+	{
+		"title": "Behavior Management Strategies",
+		"icon": "scale",
+		"description": "Learn effective strategies for managing challenging behaviors. Get practical tips backed by child psychology research.",
+		"category": "Parenting Skills"
+	},
+	{
+		"title": "Nutrition & Health Guidance",
+		"icon": "shield-check",
+		"description": "Receive expert advice on child nutrition, sleep, and overall health. Get age-appropriate recommendations for healthy development.",
+		"category": "Health"
+	},
+	{
+		"title": "Parent Community Support",
+		"icon": "chat-bubble-left-right",
+		"description": "Connect with other parents facing similar challenges. Share experiences and get support from our moderated community.",
+		"category": "Community"
+	},
+	{
+		"title": "Emergency Support Access",
+		"icon": "bell-alert",
+		"description": "Get immediate access to crisis support and emergency resources when you need them most. 24/7 availability for urgent situations.",
+		"category": "Support"
+	},
+	{
+		"title": "Multilingual Support",
+		"icon": "globe",
+		"description": "Access our platform in multiple languages including Persian and English. Get support in the language you're most comfortable with.",
+		"category": "Accessibility"
+	},
+	{
+		"title": "Progress Reports",
+		"icon": "clipboard-document-list",
+		"description": "Generate detailed reports on your child's development progress. Share insights with healthcare providers and educators.",
+		"category": "Reporting"
+	},
+	{
+		"title": "Mobile App Access",
+		"icon": "device-phone-mobile",
+		"description": "Access all features on the go with our mobile app. Get parenting support wherever you are, whenever you need it.",
+		"category": "Accessibility"
+	},
+	{
+		"title": "Video Consultation Booking",
+		"icon": "computer-desktop",
+		"description": "Schedule video consultations with child psychologists for personalized support. Get expert advice tailored to your specific situation.",
+		"category": "Expert Support"
+	},
+	{
+		"title": "Resource Library",
+		"icon": "book",
+		"description": "Access a comprehensive library of parenting resources, articles, and educational materials. Stay informed with the latest research.",
+		"category": "Education"
+	},
+	{
+		"title": "Goal Setting & Tracking",
+		"icon": "trophy",
+		"description": "Set parenting goals and track your progress. Celebrate achievements and stay motivated on your parenting journey.",
+		"category": "Development"
+	},
+	{
+		"title": "Sleep Training Support",
+		"icon": "moon",
+		"description": "Get expert guidance on establishing healthy sleep habits. Learn evidence-based techniques for better sleep routines.",
+		"category": "Health"
+	},
+	{
+		"title": "Potty Training Assistance",
+		"icon": "toilet",
+		"description": "Receive step-by-step guidance for successful potty training. Get tips and strategies for this important developmental milestone.",
+		"category": "Development"
+	},
+	{
+		"title": "Social Skills Development",
+		"icon": "user-group",
+		"description": "Learn strategies to help your child develop strong social skills. Get activities and tips for building friendships and social confidence.",
+		"category": "Development"
+	},
+	{
+		"title": "Emotional Intelligence Support",
+		"icon": "heart",
+		"description": "Help your child develop emotional intelligence and self-regulation skills. Learn techniques for managing emotions and building resilience.",
+		"category": "Development"
+	},
+	{
+		"title": "Academic Readiness",
+		"icon": "academic-cap",
+		"description": "Prepare your child for academic success with age-appropriate learning activities. Build foundational skills for school readiness.",
+		"category": "Education"
+	},
+	{
+		"title": "Special Needs Support",
+		"icon": "accessibility",
+		"description": "Get specialized guidance for children with special needs. Access resources and strategies for inclusive parenting.",
+		"category": "Support"
+	},
+	{
+		"title": "Family Wellness Tools",
+		"icon": "heart",
+		"description": "Access tools and resources for overall family wellness. Get support for maintaining a healthy family dynamic.",
+		"category": "Health"
+	},
+	{
+		"title": "Parent Self-Care",
+		"icon": "sparkles",
+		"description": "Learn the importance of parent self-care and get practical tips for maintaining your own wellbeing while caring for your child.",
+		"category": "Wellness"
+	},
+	{
+		"title": "Cultural Sensitivity",
+		"icon": "globe-alt",
+		"description": "Access culturally sensitive parenting advice that respects your family's values and traditions.",
+		"category": "Accessibility"
+	},
+	{
+		"title": "Emergency Protocols",
+		"icon": "exclamation-triangle",
+		"description": "Learn essential emergency protocols and first aid basics for common childhood injuries and situations.",
+		"category": "Safety"
+	},
+	{
+		"title": "Digital Safety Guidance",
+		"icon": "shield-check",
+		"description": "Get expert advice on keeping your child safe in the digital world. Learn about screen time management and online safety.",
+		"category": "Safety"
+	},
+	{
+		"title": "Family Communication Tools",
+		"icon": "chat-bubble-left-ellipsis",
+		"description": "Access tools and strategies for improving family communication. Build stronger relationships through effective dialogue.",
+		"category": "Family"
+	},
+	{
+		"title": "Parenting Style Assessment",
+		"icon": "clipboard-document-check",
+		"description": "Take assessments to understand your parenting style and get personalized recommendations for improvement.",
+		"category": "Assessment"
+	},
+	{
+		"title": "Stress Management",
+		"icon": "leaf",
+		"description": "Learn effective stress management techniques for parents. Get tools for maintaining calm and patience in challenging situations.",
+		"category": "Wellness"
+	},
+	{
+		"title": "Family Bonding Activities",
+		"icon": "heart",
+		"description": "Discover fun and meaningful activities to strengthen family bonds. Create lasting memories and build strong relationships.",
+		"category": "Family"
+	},
+	{
+		"title": "Professional Referrals",
+		"icon": "phone-arrow-up-right",
+		"description": "Get referrals to trusted healthcare providers, therapists, and specialists when additional support is needed.",
+		"category": "Support"
 	}
 ]

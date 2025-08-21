@@ -15,44 +15,86 @@ import Card from '../../ui/cards/partials/Card.astro'
 // Props
 type Props = {
 	classes?: string
+	lang?: string
 }
-const { classes } = Astro.props
+const { classes, lang = 'en' } = Astro.props
+
+// Language-specific content
+const content = {
+	fa: {
+		title: 'شفاف‌سازی <strong>قیمت‌گذاری،</strong> پاسخ به سوالات متداول',
+		description: 'در مورد طرح‌های قیمت‌گذاری ما کنجکاو هستید؟ ما اینجا هستیم تا کمک کنیم. در زیر برخی از سوالات متداول در مورد گزینه‌های قیمت‌گذاری ما آمده است.',
+		faqs: [
+			{
+				title: 'در آزمایش رایگان چه چیزی شامل می‌شود؟',
+				text: 'آزمایش رایگان ما به شما دسترسی کامل به همه امکانات پلتفرم ما را برای ۱۴ روز می‌دهد. می‌توانید همه عملکردها را کاوش و استفاده کنید تا ببینید چگونه با نیازهای فرزندپروری شما مطابقت دارند.'
+			},
+			{
+				title: 'آیا می‌توانم بعداً طرحم را تغییر دهم؟',
+				text: 'بله، می‌توانید در هر زمان از تنظیمات حساب خود، طرح خود را ارتقا یا تنزل دهید. تغییرات فوراً اعمال می‌شود و هر تعدیل هزینه متناسب‌سازی خواهد شد.'
+			},
+			{
+				title: 'آیا هزینه‌های پنهان وجود دارد؟',
+				text: 'خیر، هیچ هزینه پنهانی وجود ندارد. قیمتی که می‌بینید همان قیمتی است که پرداخت می‌کنید. ما به قیمت‌گذاری شفاف بدون سورپرایز اعتقاد داریم.'
+			},
+			{
+				title: 'چه روش‌های پرداخت را قبول می‌کنید؟',
+				text: 'ما همه کارت‌های اعتباری اصلی از جمله ویزا، مسترکارت و پی‌پال را قبول می‌کنیم. برای طرح‌های سازمانی، گزینه‌های صورتحساب نیز ارائه می‌دهیم.'
+			},
+			{
+				title: 'آیا برای اشتراک سالانه تخفیف ارائه می‌دهید؟',
+				text: 'بله، ما برای اشتراک سالانه تخفیف ارائه می‌دهیم. با انتخاب طرح سالانه، می‌توانید تا ۲۰٪ در مقایسه با طرح ماهانه صرفه‌جویی کنید.'
+			}
+		]
+	},
+	en: {
+		title: 'Demystifying <strong>pricing,</strong> common queries resolved',
+		description: 'Curious about our pricing plans? We\'re here to help. Below are some of the most frequently asked questions about our pricing options.',
+		faqs: [
+			{
+				title: 'What is included in the free trial?',
+				text: 'Our free trial gives you full access to all features of our platform for 14 days. You can explore and use all functionalities to see how they fit your parenting needs, without any cost.'
+			},
+			{
+				title: 'Can I change my plan later?',
+				text: 'Yes, you can upgrade or downgrade your plan at any time from your account settings. The changes will take effect immediately, and any cost adjustments will be prorated.'
+			},
+			{
+				title: 'Are there any hidden fees?',
+				text: 'No, there are no hidden fees. The price you see is the price you pay. We believe in transparent pricing with no surprises.'
+			},
+			{
+				title: 'What payment methods do you accept?',
+				text: 'We accept all major credit cards, including Visa, MasterCard, and PayPal. For enterprise plans, we also offer invoicing options.'
+			},
+			{
+				title: 'Do you offer discounts for annual subscriptions?',
+				text: 'Yes, we offer a discount for annual subscriptions. By choosing an annual plan, you can save up to 20% compared to the monthly plan.'
+			}
+		]
+	}
+}
+
+const currentContent = content[lang as keyof typeof content] || content.en
 ---
 
 <Section id="FAQ" classes={classes}>
 	<Row>
 		<Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-			<h2 class="text-pretty">
-				Demystifying <strong>pricing,</strong> common queries resolved
-			</h2>
+			<h2 class="text-pretty" set:html={currentContent.title}></h2>
 			<p class="text-lg leading-relaxed">
-				Curious about our pricing plans? We’re here to help. Below are some of the most frequently
-				asked questions about our pricing options.
+				{currentContent.description}
 			</p>
 		</Col>
 		<Col span="2" />
 		<Col span="8">
 			<Card classes="divide-y divide-neutral-100 dark:divide-neutral-800">
-				<Accordion
-					title="What is included in the free trial?"
-					text="Our free trial gives you full access to all features of our platform for 14 days. You can explore and use all functionalities to see how they fit your business needs, without any cost."
-				/>
-				<Accordion
-					title="Can I change my plan later?"
-					text="Yes, you can upgrade or downgrade your plan at any time from your account settings. The changes will take effect immediately, and any cost adjustments will be prorated."
-				/>
-				<Accordion
-					title="Are there any hidden fees?"
-					text="No, there are no hidden fees. The price you see is the price you pay. We believe in transparent pricing with no surprises."
-				/>
-				<Accordion
-					title="What payment methods do you accept?"
-					text="We accept all major credit cards, including Visa, MasterCard, American Express, and PayPal. For enterprise plans, we also offer invoicing options."
-				/>
-				<Accordion
-					title="Do you offer discounts for annual subscriptions?"
-					text="Yes, we offer a discount for annual subscriptions. By choosing an annual plan, you can save up to 20% compared to the monthly plan."
-				/>
+				{currentContent.faqs.map(faq => (
+					<Accordion
+						title={faq.title}
+						text={faq.text}
+					/>
+				))}
 			</Card>
 		</Col>
 		<Col span="2" />

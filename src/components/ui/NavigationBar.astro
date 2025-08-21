@@ -16,16 +16,67 @@
 import { Icon } from 'astro-icon/components'
 import Button from './Button.astro'
 import Switcher from './ModeSwitcher.astro'
-import LanguageSelector from './LanguageSelector.astro'
+import LanguageDropdown from './LanguageDropdownAlpine.astro'
 
 // Data
-import { navigationBarData } from '../../config/navigationBar'
 import { getLanguageFromUrl, addLanguageToUrl } from '../../config/i18n'
-const { logo, navItems, navActions } = navigationBarData
 
 // Determine current path and language
 const path = new URL(Astro.request.url).pathname
 const currentLang = getLanguageFromUrl(path)
+
+// Language-specific navigation content
+const navContent = {
+	fa: {
+		logo: {
+			src: '/logo.png',
+			alt: 'هم‌پای مادر لوگو'
+		},
+		logoText: 'هم‌پای مادر',
+		navItems: [
+			{ name: 'خانه', link: '/' },
+			{ name: 'امکانات', link: '/features' },
+			{ name: 'قیمت‌گذاری', link: '/pricing' },
+			{
+				name: 'منابع',
+				link: '#',
+				submenu: [
+					{ name: 'وبلاگ', link: '/blog' },
+					{ name: 'سوالات متداول', link: '/faq' },
+					{ name: 'شرایط', link: '/terms' }
+				]
+			},
+			{ name: 'تماس', link: '/contact' }
+		],
+		navActions: [{ name: 'شروع رایگان', link: '/', style: 'primary', size: 'lg' }]
+	},
+	en: {
+		logo: {
+			src: '/logo.png',
+			alt: 'MamaTogether Logo'
+		},
+		logoText: 'MamaTogether',
+		navItems: [
+			{ name: 'Home', link: '/' },
+			{ name: 'Features', link: '/features' },
+			{ name: 'Pricing', link: '/pricing' },
+			{
+				name: 'Resources',
+				link: '#',
+				submenu: [
+					{ name: 'Blog', link: '/blog' },
+					{ name: 'FAQ', link: '/faq' },
+					{ name: 'Terms', link: '/terms' }
+				]
+			},
+			{ name: 'Contact', link: '/contact' }
+		],
+		navActions: [{ name: 'Start Free Trial', link: '/', style: 'primary', size: 'lg' }]
+	}
+}
+
+const currentNav = navContent[currentLang as keyof typeof navContent] || navContent.en
+const { logo, logoText, navItems, navActions } = currentNav
 function isActiveLocalized(link: string): boolean {
     const localized = addLanguageToUrl(link, currentLang)
     return path === localized || path === `${localized}/`
@@ -45,7 +96,7 @@ const savedNavActions = navActions.map((action) => ({
 			<!-- Logo -->
             <a href={addLanguageToUrl('/', currentLang)} class="header__logo">
 				<img src={logo.src} alt={logo.alt} width="48" height="48" />
-				<span>{logo.text}</span>
+				<span>{logoText}</span>
 			</a>
 
 			<!-- Menu toggle -->
@@ -104,14 +155,12 @@ const savedNavActions = navActions.map((action) => ({
 				}
 			</ul>
 
-			<!-- Language Selector -->
-			<LanguageSelector />
-
-			<!-- Theme Switcher -->
-			<Switcher />
-
 			<!-- Navigation action buttons -->
 			<div class="header__actions">
+				<!-- Language Dropdown -->
+				<div class="header__lang">
+					<LanguageDropdown />
+				</div>
 				{
 					savedNavActions.map((action) => (
 						<Button classes="flex-auto" size={action.size} style={action.style} modal="signup">
@@ -119,6 +168,8 @@ const savedNavActions = navActions.map((action) => ({
 						</Button>
 					))
 				}
+				<!-- Theme Switcher -->
+				<Switcher />
 			</div>
 		</nav>
 	</div>

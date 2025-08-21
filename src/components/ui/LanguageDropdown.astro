@@ -1,0 +1,154 @@
+---
+// Language Dropdown Component
+// ------------
+// Description: A dropdown component for language selection with flags.
+
+import { languages, getLanguageFromUrl, addLanguageToUrl } from '../../config/i18n'
+
+// Get current language from URL
+const currentLanguage = getLanguageFromUrl(Astro.url.pathname)
+
+// Generate language switch URLs
+const languageUrls = languages.map(lang => ({
+	...lang,
+	url: addLanguageToUrl(Astro.url.pathname, lang.code)
+}))
+
+// Find current language object
+const currentLangObj = languages.find(lang => lang.code === currentLanguage) || languages[0]
+
+// Determine the direction of the current page context
+const currentPageDir = currentLangObj?.dir || 'ltr'
+---
+
+<div class="relative inline-block text-left">
+  <div class="flex">
+    <button 
+      id="language-dropdown-button"
+      type="button" 
+      class="inline-flex items-center justify-center rounded-md border shadow-sm px-3 py-2 text-sm font-medium bg-white border-gray-300 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+      aria-expanded="false" 
+      aria-haspopup="true"
+    >
+      <img 
+        src={`/flags/${currentLanguage}.png`} 
+        alt={`${currentLangObj?.nativeName} flag`} 
+        class={`w-6 h-4 ${currentPageDir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
+        width="24"
+        height="16"
+      />
+      <span>{currentLangObj?.nativeName}</span>
+      <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+
+  <div 
+    id="language-dropdown-menu" 
+    class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800"
+    role="menu" 
+    aria-orientation="vertical" 
+    aria-labelledby="language-dropdown-button" 
+    tabindex="-1"
+  >
+    <div class="py-1" role="none">
+      {
+        languageUrls.map((lang) => (
+          <a
+            href={lang.url}
+            class={`flex items-center px-4 py-2 text-sm ${
+              lang.code === currentLanguage
+                ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200'
+                : 'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+            }`}
+            role="menuitem"
+            tabindex="-1"
+          >
+            <img 
+              src={`/flags/${lang.code}.png`} 
+              alt={`${lang.nativeName} flag`} 
+              class={`w-6 h-4 ${currentPageDir === 'rtl' ? 'ml-2' : 'mr-2'} object-cover rounded-sm`}
+              width="24"
+              height="16"
+            />
+            <span>{lang.nativeName}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  // Client-side interactivity for dropdown
+  let currentButton: HTMLElement | null = null;
+  let currentMenu: HTMLElement | null = null;
+  let handleClick: ((this: HTMLElement, ev: MouseEvent) => any) | null = null;
+  let handleDocumentClick: ((this: Document, ev: MouseEvent) => any) | null = null;
+  
+  const initDropdown = () => {
+    if (typeof window !== 'undefined') {
+      // Clean up any existing event listeners
+      if (currentButton && handleClick) {
+        currentButton.removeEventListener('click', handleClick);
+      }
+      if (handleDocumentClick) {
+        document.removeEventListener('click', handleDocumentClick);
+      }
+      
+      // Get fresh references to the DOM elements
+      currentButton = document.getElementById('language-dropdown-button');
+      currentMenu = document.getElementById('language-dropdown-menu');
+      
+      if (currentButton && currentMenu) {
+        // Define event handlers
+        handleClick = (event) => {
+          // Prevent event from bubbling up to document handler
+          event.stopPropagation();
+          
+          const isExpanded = currentButton?.getAttribute('aria-expanded') === 'true';
+          currentButton?.setAttribute('aria-expanded', String(!isExpanded));
+          currentMenu?.classList.toggle('hidden');
+        };
+        
+        handleDocumentClick = (event: MouseEvent) => {
+          const target = event.target as Node;
+          if (currentButton && currentMenu && 
+              !currentButton.contains(target) && 
+              !currentMenu.contains(target)) {
+            currentButton.setAttribute('aria-expanded', 'false');
+            currentMenu.classList.add('hidden');
+          }
+        };
+        
+        // Add event listeners
+        currentButton.addEventListener('click', handleClick);
+        document.addEventListener('click', handleDocumentClick);
+      }
+    }
+  };
+  
+  const cleanupDropdown = () => {
+    if (currentButton && currentMenu) {
+      currentButton.setAttribute('aria-expanded', 'false');
+      currentMenu.classList.add('hidden');
+    }
+  };
+  
+  // Initialize on load
+  if (typeof window !== 'undefined') {
+    // Initialize on DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDropdown);
+    } else {
+      initDropdown();
+    }
+    
+    // Re-initialize on Astro page navigation
+    window.addEventListener('astro:after-swap', initDropdown);
+    
+    // Cleanup before navigation
+    window.addEventListener('astro:before-swap', cleanupDropdown);
+  }
+</script>

@@ -19,16 +19,33 @@ if (!lang || !isValidLanguage(lang)) {
 }
 
 // - SEO
-const SEO = {
-	title: 'Foxi | Terms of Service',
-	description:
-		"Foxi's terms of service outlines the rules and regulations that govern your use of our services. Please read them carefully to understand your rights and responsibilities."
-}
+const SEO = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'MamaTogether | Terms of Service',
+			description:
+				"HamPay‑e Madar's terms of service outlines the rules and regulations that govern your use of our parenting support platform. Please read them carefully to understand your rights and responsibilities."
+		}
+	}
+	return {
+		title: 'هم‌پای مادر | شرایط استفاده از خدمات',
+		description:
+			"شرایط استفاده از خدمات هم‌پای مادر قوانین و مقرراتی را مشخص می‌کند که استفاده شما از پلتفرم پشتیبانی از فرزندپروری ما را مدیریت می‌کند. لطفاً آنها را با دقت بخوانید تا حقوق و مسئولیت‌های خود را درک کنید."
+	}
+})()
 // - Page Header
-const header = {
-	title: 'Terms and Conditions: Read, Relax, <strong>Enjoy!</strong>',
-	text: 'Please read them carefully to understand your rights and responsibilities.'
-}
+const header = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'Terms and Conditions: Supporting Mothers in Their Parenting Journey',
+			text: 'Please read these terms carefully to understand your rights and responsibilities while using our parenting support platform.'
+		}
+	}
+	return {
+		title: 'شرایط و ضوابط: حمایت از مادران در مسیر فرزندپروری',
+		text: 'لطفاً این شرایط را با دقت بخوانید تا حقوق و مسئولیت‌های خود را در هنگام استفاده از پلتفرم پشتیبانی از فرزندپروری ما درک کنید.'
+	}
+})()
 
 export async function getStaticPaths() {
 	return [
@@ -42,146 +59,217 @@ export async function getStaticPaths() {
 	<Hero title={header.title} text={header.text} />
 	<SidebarContent>
 		<div slot="sidebar">
-			<h3>Introduction</h3>
+			<h3>{lang === 'en' ? 'Introduction' : 'مقدمه'}</h3>
 			<p>
-				Please take a moment to read through these terms to understand your rights and
-				responsibilities while using our services.
+				{lang === 'en' ? 
+					'Please take a moment to read through these terms to understand your rights and responsibilities while using our services.' :
+					'لطفاً چند لحظه برای خواندن این شرایط وقت بگذارید تا حقوق و مسئولیت‌های خود را در هنگام استفاده از خدمات ما درک کنید.'
+				}
 			</p>
 		</div>
 		<div class="basic-text">
-			<h4>Welcome to Foxi</h4>
+			<h4>{lang === 'en' ? 'Welcome to MamaTogether' : 'به هم‌پای مادر خوش آمدید'}</h4>
 			<p>
-				Welcome to Foxi! We're thrilled to have you on board. Our services are designed to help you
-				stay organized, communicate effectively, and boost your productivity. By using Foxi, you are
-				agreeing to these terms and conditions, so please read them carefully.
+				{lang === 'en' ? 
+					'Welcome to MamaTogether, a hybrid platform combining 24/7 AI guidance with oversight from child psychologists to support mothers in daily parenting challenges. By using MamaTogether, you are agreeing to these terms and conditions, so please read them carefully.' :
+					'به هم‌پای مادر خوش آمدید، پلتفرمی ترکیبی که هدایت هوش مصنوعی ۲۴/۷ را با نظارت روانشناسان کودک ترکیب می‌کند تا از مادران در چالش‌های روزمره فرزندپروری حمایت کند. با استفاده از هم‌پای مادر، شما با این شرایط و ضوابط موافقت می‌کنید، بنابراین لطفاً آنها را با دقت بخوانید.'
+				}
 			</p>
 			<p>
-				Your satisfaction is important to us. If you have any questions or concerns about these
-				terms, please do not hesitate to contact us. Our team is here to assist you and ensure you
-				have a great experience with Foxi.
-			</p>
-
-			<h4>Acceptance of Terms</h4>
-			<p>
-				By accessing or using our services, you agree to comply with and be bound by these Terms of
-				Service and our Privacy Policy. If you do not agree with any part of these terms, you must
-				not use our services. Your continued use of Foxi signifies your acceptance of these terms.
-			</p>
-			<p>
-				We reserve the right to modify these terms at any time. We will notify you of any changes by
-				posting the new terms on our website. It is your responsibility to review these terms
-				periodically. Continued use of the service after any changes means you accept the new terms.
+				{lang === 'en' ? 
+					'Our platform offers smart activities, education, and early screening to help support mothers in their parenting journey. Your satisfaction and well-being are important to us. If you have any questions or concerns about these terms, please contact us.' :
+					'پلتفرم ما فعالیت‌های هوشمند، آموزش و غربالگری اولیه را برای کمک به حمایت از مادران در مسیر فرزندپروری آنها ارائه می‌دهد. رضایت و رفاه شما برای ما مهم است. اگر سوال یا نگرانی در مورد این شرایط دارید، لطفاً با ما تماس بگیرید.'
+				}
 			</p>
 
-			<h4>Our Commitment to You</h4>
+			<h4>{lang === 'en' ? 'Acceptance of Terms' : 'پذیرش شرایط'}</h4>
 			<p>
-				At Foxi, we are committed to providing you with reliable, high-quality services. Our goal is
-				to help you achieve your productivity and organizational objectives with ease. We
-				continuously work to improve our services and provide you with the best possible experience.
+				{lang === 'en' ? 
+					'By accessing or using our services, you agree to comply with and be bound by these Terms of Service and our Privacy Policy. If you do not agree with any part of these terms, you must not use our services. Your continued use of MamaTogether signifies your acceptance of these terms.' :
+					'با دسترسی یا استفاده از خدمات ما، شما موافقت می‌کنید که این شرایط استفاده از خدمات و سیاست حفظ حریم خصوصی ما را رعایت کرده و به آنها پایبند باشید. اگر با بخشی از این شرایط موافق نیستید، نباید از خدمات ما استفاده کنید. ادامه استفاده شما از هم‌پای مادر به معنای پذیرش این شرایط است.'
+				}
 			</p>
 			<p>
-				We value your feedback and suggestions. Please feel free to reach out to us with any
-				comments or ideas on how we can serve you better. Your input helps us enhance Foxi and meet
-				your
+				{lang === 'en' ? 
+					'We reserve the right to modify these terms at any time. We will notify you of any changes by posting the new terms on our website. It is your responsibility to review these terms periodically. Continued use of the service after any changes means you accept the new terms.' :
+					'ما حق داریم این شرایط را در هر زمان تغییر دهیم. ما شما را از هر تغییری با انتشار شرایط جدید در وب‌سایت ما آگاه خواهیم کرد. مسئولیت شما بررسی دوره‌ای این شرایط است. ادامه استفاده از سرویس پس از هر تغییر به معنای پذیرش شرایط جدید است.'
+				}
+			</p>
+
+			<h4>{lang === 'en' ? 'Our Commitment to You' : 'تعهد ما به شما'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'At MamaTogether, we are committed to providing reliable, high-quality parenting support services. Our goal is to help mothers navigate parenting challenges with the aid of both AI technology and human expertise. We continuously work to improve our services and provide you with the best possible experience.' :
+					'در هم‌پای مادر، ما متعهد به ارائه خدمات حمایتی قابل اعتماد و با کیفیت برای فرزندپروری هستیم. هدف ما کمک به مادران برای عبور از چالش‌های فرزندپروری با کمک فناوری هوش مصنوعی و تخصص انسانی است. ما به طور مداوم برای بهبود خدمات خود کار می‌کنیم و بهترین تجربه ممکن را برای شما فراهم می‌کنیم.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'We value your feedback and suggestions. Please feel free to reach out to us with any comments or ideas on how we can better support you in your parenting journey. Your input helps us enhance MamaTogether and meet your needs.' :
+					'ما ارزش بازخورد و پیشنهادات شما را می‌دانیم. لطفاً احساس راحتی کنید تا با ما تماس بگیرید و نظرات یا ایده‌های خود را در مورد چگونگی حمایت بهتر ما از شما در مسیر فرزندپروری به اشتراک بگذارید. نظرات شما به ما کمک می‌کند هم‌پای مادر را بهبود ببخشیم و نیازهای شما را برآورده کنیم.'
+				}
 			</p>
 		</div>
 	</SidebarContent>
 	<SidebarContent classes="bg-neutral-50 dark:bg-neutral-900">
 		<div slot="sidebar">
-			<h3>User Accounts</h3>
+			<h3>{lang === 'en' ? 'User Accounts' : 'حساب‌های کاربری'}</h3>
 			<p>
-				This section explains the requirements and responsibilities associated with creating and
-				maintaining a user account on Foxi. Please ensure you understand and comply with these
-				guidelines to use our services effectively.
+				{lang === 'en' ? 
+					'This section explains the requirements and responsibilities associated with creating and maintaining a user account on MamaTogether. Please ensure you understand and comply with these guidelines to use our services effectively.' :
+					'این بخش الزامات و مسئولیت‌های مربوط به ایجاد و نگهداری حساب کاربری در هم‌پای مادر را توضیح می‌دهد. لطفاً اطمینان حاصل کنید که این دستورالعمل‌ها را درک کرده و با آنها مطابقت دارید تا بتوانید به طور مؤثر از خدمات ما استفاده کنید.'
+				}
 			</p>
 		</div>
 		<div class="basic-text">
-			<h4>Registration</h4>
+			<h4>{lang === 'en' ? 'Registration' : 'ثبت‌نام'}</h4>
 			<p>
-				To access certain features of Foxi, you must create a user account. During registration, you
-				agree to provide accurate and complete information. This information helps us serve you
-				better and ensures the security and functionality of your account.
+				{lang === 'en' ? 
+					'To access certain features of MamaTogether, you must create a user account. During registration, you agree to provide accurate and complete information. This information helps us provide personalized parenting support and ensures the security and functionality of your account.' :
+					'برای دسترسی به برخی از ویژگی‌های هم‌پای مادر، باید یک حساب کاربری ایجاد کنید. در هنگام ثبت‌نام، شما موافقت می‌کنید که اطلاعات دقیق و کاملی ارائه دهید. این اطلاعات به ما کمک می‌کند تا حمایت شخصی‌سازی شده فرزندپروری ارائه دهیم و امنیت و عملکرد حساب شما را تضمین کنیم.'
+				}
 			</p>
 			<p>
-				By registering, you also agree to keep your information up-to-date. Inaccurate or outdated
-				information can lead to issues with your account and may affect your ability to use certain
-				features of Foxi.
-			</p>
-
-			<h4>Account Security</h4>
-			<p>
-				Maintaining the security of your account is your responsibility. You agree to keep your
-				password confidential and not share it with anyone. If you suspect any unauthorized use of
-				your account, you must notify us immediately.
-			</p>
-			<p>
-				We recommend using a strong and unique password for your Foxi account. Regularly updating
-				your password and using two-factor authentication, if available, can further enhance the
-				security of your account.
+				{lang === 'en' ? 
+					'By registering, you also agree to keep your information up-to-date. Inaccurate or outdated information can lead to issues with your account and may affect your ability to receive personalized parenting support.' :
+					'با ثبت‌نام، شما همچنین موافقت می‌کنید که اطلاعات خود را به‌روز نگه دارید. اطلاعات نادرست یا قدیمی می‌تواند منجر به مشکلاتی در حساب شما شود و ممکن است بر توانایی شما برای دریافت حمایت شخصی‌سازی شده فرزندپروری تأثیر بگذارد.'
+				}
 			</p>
 
-			<h4>Account Usage</h4>
+			<h4>{lang === 'en' ? 'Account Security' : 'امنیت حساب'}</h4>
 			<p>
-				As the account holder, you are responsible for all activities that occur under your account.
-				This includes any actions taken by others who may have access to your account. Ensure that
-				you monitor and manage your account usage appropriately.
+				{lang === 'en' ? 
+					'Maintaining the security of your account is your responsibility. You agree to keep your password confidential and not share it with anyone. If you suspect any unauthorized use of your account, you must notify us immediately.' :
+					'حفظ امنیت حساب شما مسئولیت شماست. شما موافقت می‌کنید که رمز عبور خود را محرمانه نگه دارید و آن را با کسی به اشتراک نگذارید. اگر هرگونه استفاده غیرمجاز از حساب خود را مشاهده کردید، باید فوراً ما را مطلع کنید.'
+				}
 			</p>
 			<p>
-				If we detect any suspicious or unauthorized activities, we may take actions to protect your
-				account, including temporarily suspending access or requiring additional verification steps.
-				Our goal is to safeguard your account and personal information.
+				{lang === 'en' ? 
+					'We recommend using a strong and unique password for your MamaTogether account. Regularly updating your password and using two-factor authentication, if available, can further enhance the security of your account and personal information.' :
+					'ما توصیه می‌کنیم از یک رمز عبور قوی و منحصر به فرد برای حساب هم‌پای مادر خود استفاده کنید. به‌روزرسانی منظم رمز عبور و استفاده از احراز هویت دو مرحله‌ای، در صورت وجود، می‌تواند امنیت حساب و اطلاعات شخصی شما را بیشتر کند.'
+				}
+			</p>
+
+			<h4>{lang === 'en' ? 'Account Usage' : 'استفاده از حساب'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'As the account holder, you are responsible for all activities that occur under your account. This includes any actions taken by others who may have access to your account. Ensure that you monitor and manage your account usage appropriately.' :
+					'به عنوان دارنده حساب، شما مسئول تمام فعالیت‌هایی هستید که تحت حساب شما انجام می‌شود. این شامل هرگونه عملکردی است که افراد دیگر که ممکن است به حساب شما دسترسی داشته باشند، انجام دهند. اطمینان حاصل کنید که استفاده و مدیریت حساب خود را به درستی نظارت و مدیریت کنید.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'If we detect any suspicious or unauthorized activities, we may take actions to protect your account, including temporarily suspending access or requiring additional verification steps. Our goal is to safeguard your account and personal information.' :
+					'اگر فعالیت‌های مشکوک یا غیرمجازی را شناسایی کنیم، ممکن است اقداماتی برای محافظت از حساب شما انجام دهیم، از جمله تعلیق موقت دسترسی یا نیاز به مراحل تأیید اضافی. هدف ما محافظت از حساب و اطلاعات شخصی شماست.'
+				}
 			</p>
 		</div>
 	</SidebarContent>
 	<SidebarContent>
 		<div slot="sidebar">
-			<h3>Limitation of Liability</h3>
+			<h3>{lang === 'en' ? 'Professional Services and Medical Disclaimer' : 'خدمات حرفه‌ای و سلب مسئولیت پزشکی'}</h3>
 			<p>
-				This section outlines the limitations of our liability regarding the use of Foxi services.
-				Understanding these limitations helps you know the extent of our responsibilities and your
-				rights.
+				{lang === 'en' ? 
+					'This section outlines important information about the professional services provided through MamaTogether and includes a medical disclaimer. Please read carefully to understand the nature and limitations of our services.' :
+					'این بخش اطلاعات مهمی در مورد خدمات حرفه‌ای ارائه شده از طریق هم‌پای مادر را مشخص می‌کند و شامل یک سلب مسئولیت پزشکی است. لطفاً با دقت بخوانید تا ماهیت و محدودیت‌های خدمات ما را درک کنید.'
+				}
 			</p>
 		</div>
 		<div class="basic-text">
-			<h4>General Limitations</h4>
+			<h4>{lang === 'en' ? 'Professional Services' : 'خدمات حرفه‌ای'}</h4>
 			<p>
-				Foxi is provided on an "as is" and "as available" basis. We do not warrant that the service
-				will be uninterrupted, error-free, or completely secure. We disclaim all warranties, whether
-				express or implied, including but not limited to the implied warranties of merchantability,
-				fitness for a particular purpose, and non-infringement.
+				{lang === 'en' ? 
+					'MamaTogether provides parenting support services through a combination of AI technology and oversight from qualified child psychologists. Our services include 24/7 AI guidance, interactive screening, educational content, and personalized action plans. While we strive to provide helpful information and support, our services are not a substitute for professional medical advice, diagnosis, or treatment.' :
+					'هم‌پای مادر خدمات حمایتی فرزندپروری را از طریق ترکیب فناوری هوش مصنوعی و نظارت روانشناسان کودک واجد شرایط ارائه می‌دهد. خدمات ما شامل هدایت ۲۴/۷ هوش مصنوعی، غربالگری تعاملی، محتوای آموزشی و برنامه‌های عملی شخصی‌سازی شده است. در حالی که ما در تلاش برای ارائه اطلاعات و حمایت مفید هستیم، خدمات ما جایگزین مشاوره پزشکی حرفه‌ای، تشخیص یا درمان نیست.'
+				}
 			</p>
 			<p>
-				We are not liable for any damages resulting from the use or inability to use our services,
-				including but not limited to direct, indirect, incidental, special, consequential, or
-				punitive damages. This includes damages for loss of profits, data, or other intangibles.
-			</p>
-
-			<h4>Third-Party Services</h4>
-			<p>
-				Foxi may include links to third-party websites or services that are not owned or controlled
-				by us. We do not endorse or assume any responsibility for any such third-party sites,
-				information, materials, products, or services. Accessing and using these third-party
-				services is at your own risk.
-			</p>
-			<p>
-				We are not liable for any loss or damage incurred as a result of any dealings with
-				third-party websites or services, including the sharing of your information with such third
-				parties. It is your responsibility to review the terms and conditions and privacy policies
-				of any third-party websites or services you use.
+				{lang === 'en' ? 
+					'Our child psychologists provide oversight and review user progress, but they do not establish a formal therapist-client relationship with users. If you require professional mental health services, we encourage you to seek the assistance of qualified healthcare professionals in your area.' :
+					'روانشناسان کودک ما نظارت می‌کنند و پیشرفت کاربران را بررسی می‌کنند، اما رابطه رسمی درمانگر-مشتری با کاربران برقرار نمی‌کنند. اگر به خدمات حرفه‌ای سلامت روان نیاز دارید، شما را تشویق می‌کنیم تا به دنبال کمک متخصصان بهداشت و درمان واجد شرایط در منطقه خود باشید.'
+				}
 			</p>
 
-			<h4>Maximum Liability</h4>
+			<h4>{lang === 'en' ? 'Medical Disclaimer' : 'سلب مسئولیت پزشکی'}</h4>
 			<p>
-				In no event shall our total liability to you for all claims arising out of or relating to
-				the use of or inability to use the service exceed the amount paid by you, if any, for
-				accessing Foxi during the twelve (12) months immediately preceding the date of the claim.
-				This limitation applies regardless of the form or source of the claim or loss, whether such
-				liability arises out of any claim based upon contract, warranty, tort, or otherwise.
+				{lang === 'en' ? 
+					'The information provided through MamaTogether is for educational and supportive purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.' :
+					'اطلاعات ارائه شده از طریق هم‌پای مادر فقط برای اهداف آموزشی و حمایتی است و قرار نیست جایگزین مشاوره پزشکی حرفه‌ای، تشخیص یا درمان شود. همیشه با پزشک خود یا سایر ارائه دهندگان خدمات بهداشتی واجد شرایط با هر سوالی که در مورد یک وضعیت پزشکی دارید مشورت کنید.'
+				}
 			</p>
 			<p>
-				Some jurisdictions do not allow the exclusion or limitation of liability for consequential
-				or incidental damages, so the above limitation may not apply to you. In such cases, our
-				liability will be limited to the fullest extent permitted by applicable law.
+				{lang === 'en' ? 
+					'If you believe you or your child has a medical emergency, immediately contact your doctor or emergency services. Do not delay or disregard seeking professional medical advice because of something you have read on MamaTogether.' :
+					'اگر فکر می‌کنید شما یا فرزند شما دچار یک اورژانس پزشکی هستید، فوراً با پزشک خود یا خدمات اورژانس تماس بگیرید. به خاطر چیزی که در هم‌پای مادر خوانده‌اید، در جستجوی مشاوره پزشکی حرفه‌ای تأخیر نیافتید یا آن را نادیده نگیرید.'
+				}
+			</p>
+
+			<h4>{lang === 'en' ? 'User Content and Interactions' : 'محتوای کاربر و تعاملات'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'You are responsible for any content you submit, post, or display through MamaTogether. By submitting, posting, or displaying content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform, and display such content in connection with our services.' :
+					'شما مسئول هر محتوایی هستید که از طریق هم‌پای مادر ارسال، منتشر یا نمایش می‌دهید. با ارسال، انتشار یا نمایش محتوا، شما به ما مجوز جهانی، غیرانحصاری و بدون حق امتیاز برای استفاده، بازتولید، اصلاح، تطبیق، انتشار، ترجمه، ایجاد آثار مشتق شده از، توزیع، اجرا و نمایش چنین محتوایی در ارتباط با خدمات ما اعطا می‌کنید.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'We do not endorse any user content or guarantee its accuracy. You understand that we are not responsible for any decisions or actions you take based on content provided through our services. We reserve the right to remove any content that we determine violates these terms or is otherwise objectionable.' :
+					'ما هیچ محتوای کاربری را تأیید نمی‌کنیم یا دقت آن را تضمین نمی‌کنیم. شما درک می‌کنید که ما مسئول هر تصمیم یا عملی که بر اساس محتوای ارائه شده از طریق خدمات ما انجام می‌دهید، نیستیم. ما حق داریم هر محتوایی را که تعیین کنیم این شرایط را نقض می‌کند یا به روش دیگری نامناسب است، حذف کنیم.'
+				}
+			</p>
+		</div>
+	</SidebarContent>
+	<SidebarContent classes="bg-neutral-50 dark:bg-neutral-900">
+		<div slot="sidebar">
+			<h3>{lang === 'en' ? 'Limitation of Liability' : 'محدودیت مسئولیت'}</h3>
+			<p>
+				{lang === 'en' ? 
+					'This section outlines the limitations of our liability regarding the use of MamaTogether services. Understanding these limitations helps you know the extent of our responsibilities and your rights.' :
+					'این بخش محدودیت‌های مربوط به مسئولیت ما در قبال استفاده از خدمات هم‌پای مادر را مشخص می‌کند. درک این محدودیت‌ها به شما کمک می‌کند تا میزان مسئولیت‌های ما و حقوق خود را بدانید.'
+				}
+			</p>
+		</div>
+		<div class="basic-text">
+			<h4>{lang === 'en' ? 'General Limitations' : 'محدودیت‌های عمومی'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'MamaTogether is provided on an "as is" and "as available" basis. We do not warrant that the service will be uninterrupted, error-free, or completely secure. We disclaim all warranties, whether express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.' :
+					'هم‌پای مادر با پایه "همان‌طور که هست" و "همان‌طور که در دسترس است" ارائه می‌شود. ما تضمین نمی‌کنیم که سرویس بدون وقفه، بدون خطا یا کاملاً ایمن باشد. ما همه ضمانت‌ها را رد می‌کنیم، چه صریح و چه ضمنی، از جمله اما نه محدود به ضمانت‌های ضمنی قابلیت فروش، تناسب برای هدف خاص، و عدم نقض حقوق ثالث.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'We are not liable for any damages resulting from the use or inability to use our services, including but not limited to direct, indirect, incidental, special, consequential, or punitive damages. This includes damages for loss of profits, data, or other intangibles.' :
+					'ما مسئول خسارات ناشی از استفاده یا عدم توانایی در استفاده از خدمات ما نیستیم، از جمله اما نه محدود به خسارات مستقیم، غیرمستقیم، تصادفی، خاص، پیامدی، یا تنبیهی. این شامل خسارات برای از دست دادن سود، داده، یا سایر دارایی‌های ناملموس است.'
+				}
+			</p>
+
+			<h4>{lang === 'en' ? 'Parenting Services Disclaimer' : 'سلب مسئولیت خدمات فرزندپروری'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'While MamaTogether aims to provide valuable parenting support, we cannot guarantee specific outcomes or results from using our services. Parenting is a complex and individual experience, and what works for one family may not work for another. We encourage users to use their own judgment and consult with qualified professionals when needed.' :
+					'در حالی که هم‌پای مادر به دنبال ارائه حمایت ارزشمند فرزندپروری است، نمی‌توانیم نتایج یا پیامدهای خاصی را از استفاده از خدمات ما تضمین کنیم. فرزندپروری تجربه‌ای پیچیده و فردی است، و آنچه برای یک خانواده کار می‌کند ممکن است برای خانواده‌ای دیگر کار نکند. ما کاربران را تشویق می‌کنیم که در صورت نیاز از قضاوت خود استفاده کنند و با متخصصان واجد شرایط مشورت کنند.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'We are not liable for any decisions made based on the information or advice provided through our platform. Users are solely responsible for their parenting decisions and the well-being of their children.' :
+					'ما مسئول هر تصمیمی که بر اساس اطلاعات یا مشاوره ارائه شده از طریق پلتفرم ما اتخاذ شود، نیستیم. کاربران صرفاً مسئول تصمیمات فرزندپروری خود و رفاه فرزندانشان هستند.'
+				}
+			</p>
+
+			<h4>{lang === 'en' ? 'Maximum Liability' : 'حداکثر مسئولیت'}</h4>
+			<p>
+				{lang === 'en' ? 
+					'In no event shall our total liability to you for all claims arising out of or relating to the use of or inability to use the service exceed the amount paid by you, if any, for accessing MamaTogether during the twelve (12) months immediately preceding the date of the claim. This limitation applies regardless of the form or source of the claim or loss, whether such liability arises out of any claim based upon contract, warranty, tort, or otherwise.' :
+					'در هیچ شرایطی مجموع مسئولیت ما به شما برای همه ادعاهای ناشی از یا مربوط به استفاده از یا عدم توانایی در استفاده از خدمات نباید از مبلغی که شما پرداخت کرده‌اید، در صورت وجود، برای دسترسی به هم‌پای مادر در دوازده (12) ماه فوراً قبل از تاریخ ادعای، تجاوز کند. این محدودیت صرف نظر از شکل یا منبع ادعای یا ضرر، چه چنین مسئولیتی ناشی از هر ادعایی بر اساس قرارداد، ضمانت، تقصیر، یا غیره باشد.'
+				}
+			</p>
+			<p>
+				{lang === 'en' ? 
+					'Some jurisdictions do not allow the exclusion or limitation of liability for consequential or incidental damages, so the above limitation may not apply to you. In such cases, our liability will be limited to the fullest extent permitted by applicable law.' :
+					'برخی از حوزه‌های قضایی اجازه نمی‌دهند مسئولیت برای خسارات پیامدی یا تصادفی را رد یا محدود کنند، بنابراین این محدودیت ممکن است برای شما اعمال نشود. در چنین مواردی، مسئولیت ما به حداکثر میزان مجاز توسط قانون قابل اجرا محدود خواهد شد.'
+				}
 			</p>
 		</div>
 	</SidebarContent>

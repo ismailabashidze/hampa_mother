@@ -23,16 +23,33 @@ if (!lang || !isValidLanguage(lang)) {
 }
 
 // - SEO
-const SEO = {
-	title: 'Foxi | Version Updates and Improvements',
-	description:
-		"Explore Foxi's powerful features designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Foxi today!"
-}
+const SEO = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'MamaTogether | Platform Updates and Improvements',
+			description:
+				"Stay informed about all the new updates and improvements in HamPay‑e Madar, our AI + psychologist platform for mothers."
+		}
+	}
+	return {
+		title: 'Foxi | Version Updates and Improvements',
+		description:
+			"Explore Foxi's powerful features designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Foxi today!"
+	}
+})()
 // - Page Header
-const header = {
-	title: 'Foxi Version Updates and <strong>Enhancements</strong>',
-	text: 'Stay informed about all the new updates and improvements in Foxi.'
-}
+const header = (() => {
+	if (lang === 'en') {
+		return {
+			title: 'HamPay‑e Madar Updates and <strong>Enhancements</strong>',
+			text: 'Stay informed about all the new updates and improvements in our parenting support platform.'
+		}
+	}
+	return {
+		title: 'Foxi Version Updates and <strong>Enhancements</strong>',
+		text: 'Stay informed about all the new updates and improvements in Foxi.'
+	}
+})()
 
 export async function getStaticPaths() {
 	return [

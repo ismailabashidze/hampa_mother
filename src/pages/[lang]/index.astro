@@ -7,6 +7,7 @@ import Hero from '../../components/blocks/hero/HomeCTA.astro'
 import Features from '../../components/blocks/features/FeatureCards.astro'
 import Testimonial from '../../components/blocks/testimonials/BasicDark.astro'
 import HighlightBlocks from '../../components/blocks/highlights/HightlightRows.astro'
+import Pricing from '../../components/blocks/pricing/PricingColumns.astro'
 import CTA from '../../components/blocks/CTA/BasicDark.astro'
 
 // Content
@@ -23,12 +24,21 @@ if (!lang || !isValidLanguage(lang)) {
 	return Astro.redirect(`/${defaultLanguage}/`)
 }
 
-// SEO
-const SEO = {
-	title: 'Foxi | Your Productivity Toolkit',
-	description:
-		'Foxi is a powerful productivity toolkit designed to enhance your workflow and boost your productivity. With features like analytics, security, and integrations, Foxi is the perfect solution for your business.'
-}
+// SEO – language-aware
+const SEO = (() => {
+    if (lang === 'fa') {
+        return {
+            title: 'هم‌پای مادر | سکوی ترکیبی هوش مصنوعی و روانشناسی انسانی برای حمایت از مادران',
+            description:
+                'هم‌پای مادر سکوی ترکیبی است که هوش مصنوعی ۲۴/۷ را با نظارت روانشناس کودک ترکیب می‌کند تا از مادران در چالش‌های روزمره فرزندپروری با فعالیت‌های هوشمند، آموزش و غربالگری اولیه حمایت کند.'
+        }
+    }
+    return {
+        title: 'MamaTogether | Hybrid AI + Human Psychology Support for Mothers',
+        description:
+            'MamaTogether is a hybrid platform that combines 24/7 AI guidance with oversight from child psychologists to support mothers in daily parenting challenges with smart activities, education, and early screening.'
+    }
+})()
 
 export async function getStaticPaths() {
 	return [
@@ -39,9 +49,10 @@ export async function getStaticPaths() {
 ---
 
 <Layout title={SEO.title} description={SEO.description} lang={lang}>
-	<Hero />
-	<Features />
-	<Testimonial bg={testimonialBackground} bgPosition="right" />
-	<HighlightBlocks />
-	<CTA />
+	<Hero lang={lang} />
+	<Features lang={lang} />
+	<Testimonial bg={testimonialBackground} bgPosition="right" lang={lang} />
+	<HighlightBlocks lang={lang} />
+	<Pricing lang={lang} />
+	<CTA lang={lang} />
 </Layout>
