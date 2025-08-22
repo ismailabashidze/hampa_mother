@@ -358,7 +358,14 @@ export async function getStaticPaths() {
 		const demoButtons = document.querySelectorAll('.demo-btn');
 		const demoScreen = document.getElementById('demo-screen');
 		
-		const demoContent = {
+		// Define the type for our demo content
+		interface DemoContent {
+			[key: string]: {
+				[key: string]: string;
+			};
+		}
+		
+		const demoContent: DemoContent = {
 			ai: {
 				fa: '<div class="chat-message">👋 سلام! چطور می‌تونم کمکتون کنم؟</div><div class="chat-message mt-4 bg-gray-100">فرزند ۳ ساله‌ام غذا نمی‌خوره</div><div class="chat-message mt-4">💡 راهکارهای مفید: ۱) غذا رو به شکل بازی درآرید ۲) با فرزندتون همزمان غذا بخورید ۳) از تشویق مثبت استفاده کنید</div>',
 				en: '<div class="chat-message">👋 Hi! How can I help you today?</div><div class="chat-message mt-4 bg-gray-100">My 3-year-old won\'t eat</div><div class="chat-message mt-4">💡 Helpful solutions: 1) Turn meals into games 2) Eat together with your child 3) Use positive reinforcement</div>'
@@ -374,10 +381,10 @@ export async function getStaticPaths() {
 		};
 		
 		demoButtons.forEach(button => {
-			button.addEventListener('click', function() {
+			button.addEventListener('click', function(this: HTMLElement) {
 				const demo = this.dataset.demo;
 				const lang = document.documentElement.lang || 'en';
-				if (demoScreen && demoContent[demo]) {
+				if (demoScreen && demo && demoContent[demo]) {
 					demoScreen.innerHTML = demoContent[demo][lang];
 				}
 			});

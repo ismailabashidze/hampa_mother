@@ -16,7 +16,7 @@ export interface Props {
 	blockquote?: string
 	figcaption?: string
 	cite?: string
-	bg?: string
+	bg?: string | any
 	bgPosition?: string
 	classes?: string
 	lang?: string
@@ -47,6 +47,20 @@ const content = {
 }
 
 const currentContent = content[lang as keyof typeof content] || content.en
+
+// Helper function to get image source
+const getImageSrc = (image: string | any): string => {
+	if (typeof image === 'string') {
+		return image;
+	}
+	// If it's an imported image object, return its src property
+	if (image && typeof image === 'object' && image.src) {
+		return image.src;
+	}
+	return '';
+}
+
+const bgSrc = bg ? getImageSrc(bg) : '';
 ---
 
 <style>
@@ -253,9 +267,9 @@ const currentContent = content[lang as keyof typeof content] || content.en
 			</figcaption>
 		</div>
 		
-		{bg && (
+		{bgSrc && (
 			<div class="testimonial__image">
-				<img src={bg} alt="Testimonial background" style={`object-position: ${bgPosition}`} />
+				<img src={bgSrc} alt="Testimonial background" style={`object-position: ${bgPosition}`} />
 			</div>
 		)}
 	</div>

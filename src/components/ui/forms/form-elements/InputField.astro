@@ -13,6 +13,8 @@
 // - disabled: Whether the input field is disabled
 // - value: The value of the input field
 // - classes: Additional classes to be added to the input field
+// - min: The minimum value for number inputs
+// - max: The maximum value for number inputs
 
 // Reference: https://wind-ui.com/components/form-elements/input-groups/
 
@@ -23,8 +25,9 @@ import { Icon } from 'astro-icon/components'
 // Props
 type Props = {
 	id: string
-	type?: 'text' | 'email' | 'password' | 'tel'
+	type?: 'text' | 'email' | 'password' | 'tel' | 'number'
 	label: string
+	placeholder?: string
 	iconName?: string
 	iconPosition?: 'lead' | 'trail'
 	helperText?: string
@@ -32,18 +35,23 @@ type Props = {
 	disabled?: boolean
 	value?: string
 	classes?: string
+	min?: string | number
+	max?: string | number
 }
 const {
 	type = 'text',
 	id,
 	label,
+	placeholder,
 	iconName,
 	iconPosition,
 	helperText,
 	required,
 	disabled,
 	value,
-	classes
+	classes,
+	min,
+	max
 } = Astro.props
 ---
 
@@ -59,10 +67,12 @@ const {
 		id={id}
 		type={type}
 		name={id}
-		placeholder={label}
+		placeholder={placeholder || label}
 		required={required}
 		disabled={disabled}
 		value={value}
+		min={min}
+		max={max}
 		class="input__field peer"
 	/>
 	<label

@@ -115,7 +115,7 @@
 	},
 	{
 		"title": "Emotional Intelligence Support",
-		"icon": "heart",
+		"icon": "scale",
 		"description": "Help your child develop emotional intelligence and self-regulation skills. Learn techniques for managing emotions and building resilience.",
 		"category": "Development"
 	},
@@ -133,7 +133,7 @@
 	},
 	{
 		"title": "Family Wellness Tools",
-		"icon": "heart",
+		"icon": "scale",
 		"description": "Access tools and resources for overall family wellness. Get support for maintaining a healthy family dynamic.",
 		"category": "Health"
 	},
@@ -181,7 +181,7 @@
 	},
 	{
 		"title": "Family Bonding Activities",
-		"icon": "heart",
+		"icon": "scale",
 		"description": "Discover fun and meaningful activities to strengthen family bonds. Create lasting memories and build strong relationships.",
 		"category": "Family"
 	},

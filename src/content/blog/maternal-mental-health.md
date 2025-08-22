@@ -28,7 +28,7 @@ A mother's mental health doesn't just affect her—it has a profound impact on h
 Postpartum depression affects up to 1 in 8 mothers and can occur anytime within the first year after giving birth. Symptoms include persistent sadness, loss of interest in activities, fatigue, and difficulty bonding with the baby.
 
 #### Anxiety
-Generalized anxiety, panic disorders, and specific fears about parenting are common among new mothers. Symptoms may include excessive worry, restlessness, and physical symptoms like rapid heartbeat or shortness of breath.
+Generalized anxiety, panic disorders, and specific fears about parenting are common among new mothers. Symptoms may include excessive worry, restlessness, and physical symptoms like rapid scalebeat or shortness of breath.
 
 #### Postpartum OCD
 Some mothers experience intrusive thoughts about harm coming to their baby, along with compulsive behaviors aimed at preventing these feared events.
