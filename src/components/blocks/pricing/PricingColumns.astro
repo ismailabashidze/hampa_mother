@@ -181,36 +181,71 @@ const pricing = {
 
 const currentPricing = pricing[lang as keyof typeof pricing] || pricing.en
 
-const pricingData: PricingTableData[] = basePricingData.map((item, index) => {
-	const planKeys = ['free', 'basic', 'premium'] as const
-	const planKey = planKeys[index] || 'free'
-	const localizedPlan = currentContent.plans[planKey]
-	const isPersian = lang === 'fa'
-	
-	const formattedPrice = formatPrice(currentPricing.prices[index], isPersian)
-	
-	return {
-		...item,
+const pricingData: PricingTableData[] = [
+	{
 		header: {
-			...item.header,
-			title: localizedPlan.title,
-			subtitle: localizedPlan.subtitle,
+			title: currentContent.plans.free.title,
+			subtitle: currentContent.plans.free.subtitle,
 			currency: currentContent.currency,
-			price: formattedPrice,
-			priceMontly: formattedPrice,
+			price: formatPrice(currentPricing.prices[0], lang === 'fa'),
+			priceMontly: formatPrice(currentPricing.prices[0], lang === 'fa'),
 			priceLabel: currentContent.priceLabel,
 			priceLabelMontly: currentContent.priceLabel,
-			buttonName: localizedPlan.buttonName
+			buttonName: currentContent.plans.free.buttonName,
+			buttonLink: "/"
 		},
 		body: {
-			listItems: localizedPlan.features.map(feature => ({ listItem: feature }))
+			listItems: currentContent.plans.free.features.map(feature => ({ listItem: feature }))
 		},
 		footer: {
-			...item.footer,
-			buttonName: localizedPlan.seeAllFeatures
-		}
+			buttonName: currentContent.plans.free.seeAllFeatures,
+			buttonLink: "/"
+		},
+		type: "basic"
+	},
+	{
+		header: {
+			title: currentContent.plans.basic.title,
+			subtitle: currentContent.plans.basic.subtitle,
+			currency: currentContent.currency,
+			price: formatPrice(currentPricing.prices[1], lang === 'fa'),
+			priceMontly: formatPrice(currentPricing.prices[1], lang === 'fa'),
+			priceLabel: currentContent.priceLabel,
+			priceLabelMontly: currentContent.priceLabel,
+			buttonName: currentContent.plans.basic.buttonName,
+			buttonLink: "/"
+		},
+		body: {
+			listItems: currentContent.plans.basic.features.map(feature => ({ listItem: feature }))
+		},
+		footer: {
+			buttonName: currentContent.plans.basic.seeAllFeatures,
+			buttonLink: "/"
+		},
+		type: "featured"
+	},
+	{
+		header: {
+			title: currentContent.plans.premium.title,
+			subtitle: currentContent.plans.premium.subtitle,
+			currency: currentContent.currency,
+			price: formatPrice(currentPricing.prices[2], lang === 'fa'),
+			priceMontly: formatPrice(currentPricing.prices[2], lang === 'fa'),
+			priceLabel: currentContent.priceLabel,
+			priceLabelMontly: currentContent.priceLabel,
+			buttonName: currentContent.plans.premium.buttonName,
+			buttonLink: "/"
+		},
+		body: {
+			listItems: currentContent.plans.premium.features.map(feature => ({ listItem: feature }))
+		},
+		footer: {
+			buttonName: currentContent.plans.premium.seeAllFeatures,
+			buttonLink: "/"
+		},
+		type: "basic"
 	}
-})
+]
 ---
 
 <Section>
